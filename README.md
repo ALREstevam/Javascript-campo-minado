@@ -4,7 +4,7 @@
 
 1. Sempre sempre criar branches para fazer alterações
 2. Ao terminar uma alteração fazer o merge com o master o quanto antes
-3. Usar a opção "update from master" quando estiver num outro branch
+3. Usar a opção "update from master" constantemente quando estiver num outro branch
 4. Fazer pushs e pulls constantemente
 5. Caso um conflito ocorra
 	4.1. Forçar o merge pela linha de comando
