@@ -4,7 +4,7 @@
 `ymax` tamanho máximo do tabuleiro em y
 
     gameCell{
-    	valor = {-1, 0, 1, 2, 3} -> -1 = bomba
+    	valor = {-1, 0, 1, 2, 3, 4, 5, 6, 7, 8} -> -1: bomba, 0: 0->8: quantidade de bombas na redondeza
     	explorado = {true, false} 	//se já foi explorado (se está aberto ou fechado)
     	abertoCheat = {true, false}		// se está aberto ou fechado da perspectiva da opção de cheat
     }
@@ -50,8 +50,8 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 
 
 ## Difícil
-* [A]`tabuleiro <- gerarMatrizTabuleiro()` **[DIFÍCIL]**
-* `preencherMatriz()`**[DIFÍCL]**// Preenche a matriz com os números 0, 1, 2, 3 dependendo da distância das bombas
+* [A]`gerarMatrizTabuleiro()` **[DIFÍCIL]**
+* `preencherMatriz()`**[DIFÍCL]**// Preenche a matriz com os números de -1 até 8 dependendo das bombas na redondeza
 * `geraVisualizaçãoTabuleiro()`**[DIFÍCIL]**//Visualização inicial do tabuleiro
 * `atualizarVizualizacaoTabuleiro()` **[DIFÍCIL]**
 * [A]`abrirRecursivo()` **[DIFÍCIL]**
