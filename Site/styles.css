@@ -1,0 +1,54 @@
+body{
+    font-family: "Roboto", "Calibri Light", sans-serif;
+}
+
+.button{
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 0;
+    background-color: rgba(17, 17, 17, 0.89);
+    color: whitesmoke;
+    cursor: pointer;
+    transition: background 0.5s;
+    min-width: 100px;
+}
+
+.button:hover{
+    background-color: rgba(17, 17, 17, 0.60);
+}
+
+.redButton{
+    background-color: #cb4b37;
+    transition: background 0.5s;
+}
+
+.redButton:hover{
+    background-color: #b24632;
+}
+
+.greenButton{
+    background-color: #3ada76;
+    transition: background 0.5s;
+}
+
+.greenButton:hover{
+    background-color: #3bb95c;
+}
+
+.blueButton{
+    background-color: #177bbb;
+    transition: background 0.5s;
+}
+
+.blueButton:hover{
+    background-color: #1667a1;
+}
+
+input{
+    display: block;
+}
+
+input{
+    padding: 3px;
+}

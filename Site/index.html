@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Campo minado</title>
+
+    <link href="styles.css" type="text/css" rel="stylesheet">
+    <script src="game.js"></script>
+</head>
+<body>
+
+<div id="setupArea">
+    <h2></h2>
+    <form name="setupForm">
+        <label for="name">Nome</label>
+        <input type="text" name="nome" id="name" placeholder="Seu Nome Aqui">
+
+        <label for="tblx">Largura do tabuleiro</label>
+        <input type="number" placeholder="30" name="tblx" id="tblx" min="2">
+
+        <label for="tbly">Altura do tabuleiro</label>
+        <input type="number" placeholder="30" name="tbly" id="tbly" min="2">
+
+        <label for="bombAmount">Quantidade de bombas</label>
+        <input type="number" placeholder="7" name="bombAmount" id="bombAmount" min="1">
+
+        <button type="submit" class="button blueButton">Jogar</button>
+    </form>
+</div>
+
+<div id="cheatArea">
+    <h2>Cheats</h2>
+    <form name="cheatForm">
+        <label for="cheatOption">Mostrar células</label>
+        <button type="submit" name="cheatOption" id="cheatOption" class="button greenButton">Não</button>
+    </form>
+</div>
+
+<div id="histArea">
+    <h2>Histórico</h2>
+</div>
+
+<div id="gameArea">
+    <h2>Jogo</h2>
+
+    <div class="game" id="game">
+
+    </div>
+
+
+
+</div>
+
+
+
+</body>
+</html>
