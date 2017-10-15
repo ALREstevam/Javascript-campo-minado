@@ -1,5 +1,11 @@
 body{
     font-family: "Roboto", "Calibri Light", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
 }
 
 .button{
@@ -47,8 +53,84 @@ body{
 
 input{
     display: block;
+    border: #545856 2px solid;
+    padding: 3px;
+    margin: 3px;
+    transition: border 1s;
 }
 
-input{
-    padding: 3px;
+input:valid{
+    border: rgba(10, 178, 50, 0.55) 2px solid;
+}
+
+input:invalid{
+    border: rgba(178, 19, 15, 0.55) 2px solid;
+}
+
+.inputFill{
+    width: 90%;
+}
+
+.configs{
+    max-width: 15%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.configs:first-line{
+    border: solid 1px #1667a1;
+}
+
+.configsInside{
+    padding: 10px;
+    background-color: whitesmoke;
+}
+
+#gameArea{
+    background-color: whitesmoke;
+
+    float: right;
+    width: 84%;
+}
+
+#gameArea .game{
+    background-color: aliceblue;
+    min-width: 300px;
+    min-height: 300px;
+    border: solid rgba(23, 123, 187, 0.62) 1px;
+    padding: 10px;
+    overflow: auto;
+}
+
+table.game{
+    margin: 0 auto;
+}
+
+table.game tr td{
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+table.game tbody{
+    margin: 0;
+    padding: 0;
+}
+
+
+table.game tr td button{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    background-color: #177bbb;
+    border: solid 1px #1667a1;
+    cursor: pointer;
+}
+
+table.game tr td button:hover{
+    background-color: #179fe9;
 }
