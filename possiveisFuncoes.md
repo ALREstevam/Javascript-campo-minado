@@ -27,8 +27,8 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 * [K]`gerarPosAleatoriaX()`**[FÁCIL]** // gerar um número aleatório entre 0 e xmax-1
 * [K]`gerarPosAleatoriaY()`**[FÁCIL]**// gerar um número aleatório entre 0 e ymax-1
 * [K]`consultarCelula()` **[FÁCIL]**
-* `pararRelogio()` **[FÁCIL]**
-* `resetarRelogio()` **[FÁCIL]**
+*[H] `pararRelogio()` **[FÁCIL]**
+*[H] `resetarRelogio()` **[FÁCIL]**
 * [A] `adicionarAoHistorico()` **[FÁCIL]**
 * `abrirUmaCelula()`**[FÁCIL]**
 * [A]`apagarHistorico()`**[FÁCIL]**
@@ -42,8 +42,8 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 * [K]`colocarBombaPosAleatoria(tabuleiro)`**[MÉDIO]**//Deve verificar se a posição gerada não é repetida
 * [K]`dispararRelogio()` **[MÉDIO]**
 * [A]`mostrarVisualizacaoHistorico()` **[MÉDIO]**
-* `mostarMsgVenceu()` **[MÉDIO]**
-* `reiniciarJogo()` **[MÉDIO]**
+*[H] `mostarMsgVenceu()` **[MÉDIO]**
+*[H] `reiniciarJogo()` **[MÉDIO]**
 * `perderJogo()` **[MÉDIO]**
 * `mostarMsgPerdeu()` **[MÉDIO]**
 * [A]`contaMinasAoRedor()**[MÉDIO]**`
@@ -51,9 +51,9 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 
 ## Difícil
 * [A]`gerarMatrizTabuleiro()` **[DIFÍCIL]**
-* `preencherMatriz()`**[DIFÍCL]**// Preenche a matriz com os números de -1 até 8 dependendo das bombas na redondeza
+*[H] `preencherMatriz()`**[DIFÍCL]**// Preenche a matriz com os números de -1 até 8 dependendo das bombas na redondeza
 * [K]`geraVisualizaçãoTabuleiro()`**[DIFÍCIL]**//Visualização inicial do tabuleiro
-* `atualizarVizualizacaoTabuleiro()` **[DIFÍCIL]**
+*[H] `atualizarVizualizacaoTabuleiro()` **[DIFÍCIL]**
 * [A]`abrirRecursivo()` **[DIFÍCIL]**
 * `cheatMostarTodos()` **[DIFÍCIL]**
 * `cheatVoltarAoOriginal()` **[DIFÍCIL]**
