@@ -50,7 +50,6 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 
 
 ## Difícil
-* [A]`gerarMatrizTabuleiro()` **[DIFÍCIL]**
 * [H]`preencherMatriz()`**[DIFÍCL]**// Preenche a matriz com os números de -1 até 8 dependendo das bombas na redondeza
 * [K]`geraVisualizaçãoTabuleiro()`**[DIFÍCIL]**//Visualização inicial do tabuleiro
 * [H]`atualizarVizualizacaoTabuleiro()` **[DIFÍCIL]**
