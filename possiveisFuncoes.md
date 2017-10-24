@@ -32,8 +32,8 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 * [A] `adicionarAoHistorico()` **[FÁCIL]**
 * [P]`abrirUmaCelula()`**[FÁCIL]**
 * [A]`apagarHistorico()`**[FÁCIL]**
-* [P]`abrirUmaCelulaCheat()`**[FÁCIL]**
-* [P]`fecharUmaCelulaCheat()`**[FÁCIL]**
+* [P]`abrirCelulasCheat()`**[FÁCIL]**
+* [P]`fecharCelulasCheat()`**[FÁCIL]**
 * `consultarPosicao()` **[FÁCIL]** //consultar o valor em um determinado x,y do tabueiro
 * `posicaoValida()` **[FÁCIL]** // testar se um determinado par x,y está dentro do tabuleiro
 
@@ -54,8 +54,6 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 * [K]`geraVisualizaçãoTabuleiro()`**[DIFÍCIL]**//Visualização inicial do tabuleiro
 * [H]`atualizarVizualizacaoTabuleiro()` **[DIFÍCIL]**
 * [A]`abrirRecursivo()` **[DIFÍCIL]**
-* `cheatMostarTodos()` **[DIFÍCIL]**
-* [P]`cheatVoltarAoOriginal()` **[DIFÍCIL]**
 * `atualizarVizualizacaoTabuleiro()` **[DIFÍCIL]**
 
 
