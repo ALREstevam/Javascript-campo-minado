@@ -20,6 +20,13 @@ table {
     min-width: 100px;
 }
 
+.gameName{
+    font-size: 30pt;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
 .button:hover{
     background-color: rgba(17, 17, 17, 0.60);
 }
@@ -133,4 +140,9 @@ table.game tr td button{
 
 table.game tr td button:hover{
     background-color: #179fe9;
+}
+
+.histElement{
+    font-size: 10pt;
+    line-height: 15%;
 }
