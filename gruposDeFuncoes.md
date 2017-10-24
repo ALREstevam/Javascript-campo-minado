@@ -33,7 +33,7 @@
   * `reiniciarJogo()` **[MÉDIO]**
 * `abrirRecursivo()` **[DIFÍCIL]**
 	* `abrirUmaCelula()`**[FÁCIL]**
-	* `contaMinasAoRedor()**[MÉDIO]**`
+	* `contaMinasAoRedor()` **[MÉDIO]**
   * `ganharJogo()` **[DIFÍCIL]**
 
 
