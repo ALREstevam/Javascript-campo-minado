@@ -3,28 +3,46 @@
  */
 "use strict";
 
-var boadRows = 0;
-var boardColumns = 0;
-
-
-
-var cellElementExample = {
-    posx: 1, //não é fundamental se estiver em uma matriz
-    posy: 2, //não é fundamental se estiver em uma matriz
-
-    isExplored: false,
-    isOpenByCheat: false,
-
-    value: 3
-};
-
-
-//Funções - André
-    //Funções do histórico
-
 /*
-OBS: como um adicional, o histórico ficará armazenaodo mesmo que o usuário deixe a página.
-*/
+* TODO: a variávels 'playing' precisa ser definida como false no fim de uma partida
+* OBS: como um adicional, o histórico ficará armazenaodo mesmo que o usuário deixe a página.
+*
+*
+* */
+
+
+var matrix;
+var playername = "*";
+var playing = false;
+
+
+
+
+/*FUNÇÃO PRINCIPAL DO PROGRAMA: ATIVADA QUANDO UM ELEMENTO É CLICADO*/
+function elementClicked(id) {
+    console.log("EVENT: Element clicked in position:");
+    var elemPos = recoveryPostion(id);//Recuperando as coordenadas do elemento clicado
+    console.log(elemPos);
+
+
+}
+
+/*FUNÇÃO A SER ACIONADA QUANDO O JOGADOR CLICAR EM INICIAR O JOGO*/
+function setup() {
+    if(!playing){
+        playername = document.forms["setupForm"]["name"].value;
+        var mxMaxX = document.forms["setupForm"]["tblx"].value;
+        var mxMaxY = document.forms["setupForm"]["tbly"].value;
+        var mxBombs = document.forms["setupForm"]["bombAmount"].value;
+
+        matrix = generateLogicalMatrix(mxMaxX, mxMaxY, mxBombs);
+        console.log(matrix);
+        document.getElementById('game').innerHTML = gameBoardHtml(matrix);
+
+        playing = true;//Impedir que o jogo reinicie se clicar em iniciar jogo no meio de uma partida
+    }
+    return false;
+}
 
 /*Adicionar um elemento*/
 function  appendToHistoric(player, fieldx, fieldy, timeTaken, oppenedCells, matchResult) {
@@ -50,12 +68,14 @@ function  appendToHistoric(player, fieldx, fieldy, timeTaken, oppenedCells, matc
     localStorage.setItem('hist', JSON.stringify(histsArray));
 }
 
-/*Limpar o histórico*/
+/*Limpar o histórico
+* */
 function clearHistoric(){
     localStorage.removeItem('hist');
 }
 
-/*Ler histórico como um array de objetos*/
+/*Ler histórico como um array de objetos
+* */
 function readHistoric(){
     if(!localStorage.getItem('hist')){
         return null;
@@ -64,7 +84,8 @@ function readHistoric(){
     }
 }
 
-/*Converter histórico para HTML*/
+/*Converter histórico para HTML
+* */
 function historicToHtml(){
     if(!localStorage.getItem('hist')){
         return "<p>Histórico vazio</p>";
@@ -84,15 +105,19 @@ function historicToHtml(){
     }
 }
 
-/*Colocar o histórico em HTML dentro de algum elemento*/
+/*Colocar o histórico em HTML dentro de algum elemento
+* */
 function renderHistoric(id){
     document.getElementById(id).innerHTML = historicToHtml();
 }
 
+/*Gerar a posição dos vizinhos em cruz*/
 function getNeighborsPositionCross(cellx, celly) {
     return[{x: cellx+1,y:celly},{x:cellx-1 ,y:celly},{x:cellx ,y:celly+1}, {x:cellx ,y:celly-1}];
 }
 
+/*Gerar a posição dos vizinhos em círculo
+* */
 function getNeighborsPositionCircle(cellx, celly) {
     return[
         {x:cellx+1  ,y:celly},
@@ -106,57 +131,64 @@ function getNeighborsPositionCircle(cellx, celly) {
     ];
 }
 
+/*Contar minas ao redor de uma posição como cruz
+* */
 function countMinesAroundCross(boardMatrix, cellx, celly) {
     var arroundPos = getNeighborsPositionCross(cellx, celly);
     var bombCount = 0;
 
     for(var pos in arroundPos){
-        if(/*positionIsValid(pos.x, pos.y) && boardMatrix[pos.x][pos.y].value == -1*/false){
+        if(positionIsValid(pos.x, pos.y) && boardMatrix[pos.x][pos.y].value == -1){
             bombCount++;
         }
     }
     return bombCount;
 }
 
+/*Contar minas ao redor de uma posição como círculo
+* */
 function countMinesAroudCircle(boardMatrix, cellx, celly) {
     var arroundPos = getNeighborsPositionCircle(cellx, celly);
     var bombCount = 0;
 
     for(var pos in arroundPos){
-        if(/*positionIsValid(pos.x, pos.y) && boardMatrix[pos.x][pos.y].value == -1*/false){
+        if(positionIsValid(pos.x, pos.y) && boardMatrix[pos.x][pos.y].value == -1){
             bombCount++;
         }
     }
     return bombCount;
 }
 
-
-function recursivelyExplore(cellx, celly) {
-    var aroundPos = getNeighborsPositionCross(cellx, celly);
-    var aroundBombs = countMinesAroundCross(cellx, cellx);
-
-    boardMatrix[cellx][celly].isExplored = true;
-    //renderOpen(cellx, celly);
-
-    if(aroundBombs == 0){
-        for(var pos in aroundPos){
-            if(!boardMatrix[pos.x][pos.y].isExplored){
+/*
+* Função que faz a exploração de forma recursiva
+* */
+function recursivelyExplore(cellx, celly, mx) {
+    mx[cellx][celly].isExplored = true;
+    if(countMinesAroundCross(mx, cellx, cellx) == 0){
+        for(var pos in getNeighborsPositionCross(mx, cellx, celly)){
+            if(!mx[pos.x][pos.y].isExplored){
                 recursivelyExplore(pos.x, pos.y);
             }
         }
     }
 }
 
-function gameBoardHtml(maxX, maxY) {
+/*CONTINUAR ESSE EXEMPLO*/
+function gameBoardHtml(matrix) {
     var rsp = "";
     rsp += "<table class='game'>\n";
-        for(var row = 0; row < maxX; row++){
+        for(var row = 0; row < matrix.maxx; row++){
             rsp+="\t<tr>\n";
-            for(var column = 0; column < maxY; column++){
+            for(var column = 0; column < matrix.maxy; column++){
                 var pos = {
                     x: row,
                     y: column
                 };
+
+                /*TODO Adicionar a verificação se a célula está aberta, se estiver mostrar o ícone dentro dela,
+                para facilitar podemos representar as bombas usando o caractere: &#128163;
+                */
+
                 rsp+="\t\t<td>\n\t\t\t<button value='"+ JSON.stringify(pos) +"' id='"+
                     (row.toString() + "," + column.toString()) +"'" +
                     " onclick='elementClicked(this.id)'></button>\n\t\t</td>\n";
@@ -164,22 +196,59 @@ function gameBoardHtml(maxX, maxY) {
             rsp+="\t</tr>\n";
         }
     rsp += "</table>\n";
+    console.log('Matrix view updated.');
     return rsp;
 }
 
-function elementClicked(id) {
-    console.log("EVENT: Element clicked in position:");
-    console.log(recoveryPostion(id));
-}
-
+/*Recupera uma posição com base em um ID*/
 function recoveryPostion(id) {
     return JSON.parse(document.getElementById(id).getAttribute("value"));
 }
 
 
+/*Gera a representação do jogo na memória*/
+function generateLogicalMatrix(maxX, maxY, bombs) {
+
+    var mx = new Array();
+
+    for(var x = 0; x < maxX; x++){
+        var my = new Array();
+        for(var y = 0; y < maxY; y++){
+            my.push(
+                {
+                    posx: x,
+                    posy: y,
+                    isExplored: false,
+                    isOpenByCheat: false,
+                    value: 0
+                }
+            );
+        }
+        mx.push(my);
+    }
+
+    var aMatrix = {
+        bombNum: bombs,
+        oppenedCellCount: 0,
+        maxx: maxX,
+        maxy: maxY,
+        mx: mx
+    };
+
+    console.log("Logical matrix generated.");
+    console.log(aMatrix);
+    return aMatrix;
+}
 
 
 
 function test() {
-    document.getElementById('game').innerHTML = gameBoardHtml(50, 50);
+
+}
+
+
+/*
+* PARA QUEM FOR DESENVOLVER A VERIFICAÇÃO DE POSIÇÃO VÁLIDA: substituir esse código*/
+function positionIsValid(posx, posy) {
+    return false;
 }
