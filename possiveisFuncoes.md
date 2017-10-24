@@ -30,10 +30,10 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 * [H] `pararRelogio()` **[FÁCIL]**
 * [H] `resetarRelogio()` **[FÁCIL]**
 * [A] `adicionarAoHistorico()` **[FÁCIL]**
-* `abrirUmaCelula()`**[FÁCIL]**
+* [P]`abrirUmaCelula()`**[FÁCIL]**
 * [A]`apagarHistorico()`**[FÁCIL]**
-* `abrirUmaCelulaCheat()`**[FÁCIL]**
-* `fecharUmaCelulaCheat()`**[FÁCIL]**
+* [P]`abrirUmaCelulaCheat()`**[FÁCIL]**
+* [P]`fecharUmaCelulaCheat()`**[FÁCIL]**
 * `consultarPosicao()` **[FÁCIL]** //consultar o valor em um determinado x,y do tabueiro
 * `posicaoValida()` **[FÁCIL]** // testar se um determinado par x,y está dentro do tabuleiro
 
@@ -44,7 +44,7 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 * [A]`mostrarVisualizacaoHistorico()` **[MÉDIO]**
 * [H] `mostarMsgVenceu()` **[MÉDIO]**
 * [H]`reiniciarJogo()` **[MÉDIO]**
-* `perderJogo()` **[MÉDIO]**
+* [P]`perderJogo()` **[MÉDIO]**
 * `mostarMsgPerdeu()` **[MÉDIO]**
 * [A]`contaMinasAoRedor() **[MÉDIO]**`
 
@@ -55,7 +55,7 @@ Como a célula pode ser aberta com o botão de cheat e quando clicada:
 * [H]`atualizarVizualizacaoTabuleiro()` **[DIFÍCIL]**
 * [A]`abrirRecursivo()` **[DIFÍCIL]**
 * `cheatMostarTodos()` **[DIFÍCIL]**
-* `cheatVoltarAoOriginal()` **[DIFÍCIL]**
+* [P]`cheatVoltarAoOriginal()` **[DIFÍCIL]**
 * `atualizarVizualizacaoTabuleiro()` **[DIFÍCIL]**
 
 
