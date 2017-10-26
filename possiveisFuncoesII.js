@@ -17,12 +17,12 @@ function functionName(args...){//[s][Z]
 
 "[P][And]"
 function cellClicked(id){
-	//Recuperar o x e y da célula com base no id	
+	//Recuperar o x e y da célula com base no id
 	//Se for a primeira: disparar o relógio
 	//Se for uma bomba: perder o jogo
 	//Se não for bomba: abrir recursivamente
 	//Se todas as células não bombas foram abertas: ganhar jogo
-	//Caso contrário: atualizar a visualização da matriz em HTML		
+	//Caso contrário: atualizar a visualização da matriz em HTML
 }
 
 "[P][And]"
@@ -96,7 +96,6 @@ function winGame(?){
 function recusivelyOpen(?){
 	//abre as células de forma recursiva...
 }
-
 
 "[P][Kar]"
 function generateGameBoardHTML(){
@@ -303,28 +302,28 @@ function positionIsValid(x, y, ...){
 ## Funções Implementadas
 ############################################################################################################################*/
 
-function elementClicked(id)
-function setup()
-function pageLoad() 
-function appendToHistoric(player, fieldx, fieldy, timeTaken, oppenedCells, matchResult)
-function clearHistoric(id)
-function readHistoric()
-function historicToHtml()
-function renderHistoric(id)
-function getNeighborsPositionCross(cellx, celly)
-function getNeighborsPositionCircle(cellx, celly)
-function countMinesAroundCross(boardMatrix, cellx, celly)
-function countMinesAroudCircle(boardMatrix, cellx, celly) 
-function recursivelyExplore(cellx, celly, mx)
-function gameBoardHtml(matrix)
-function recoveryPostion(id)
-function generateLogicalMatrix(maxX, maxY, bombs)
-function updateBigNameTitle(playename)
-function isOpened(x, y)
-function isOpenedByCheat(x, y)
-function getValueAt(x, y)
-function setValueAt(x, y, val)
-function openCell(x, y)
-function openCellByCheat(x, y)
-function isBomb(x, y)
-function setAsBomb(x, y)
+function elementClicked(id){}
+function setup(){}
+function pageLoad(){}
+function appendToHistoric(player, fieldx, fieldy, timeTaken, oppenedCells, matchResult){}
+function clearHistoric(id){}
+function readHistoric(){}
+function historicToHtml(){}
+function renderHistoric(id){}
+function getNeighborsPositionCross(cellx, celly){}
+function getNeighborsPositionCircle(cellx, celly){}
+function countMinesAroundCross(boardMatrix, cellx, celly){}
+function countMinesAroudCircle(boardMatrix, cellx, celly){}
+function recursivelyExplore(cellx, celly, mx){}
+function gameBoardHtml(matrix){}
+function recoveryPostion(id){}
+function generateLogicalMatrix(maxX, maxY, bombs){}
+function updateBigNameTitle(playename){}
+function isOpened(x, y){}
+function isOpenedByCheat(x, y){}
+function getValueAt(x, y){}
+function setValueAt(x, y, val){}
+function openCell(x, y){}
+function openCellByCheat(x, y){}
+function isBomb(x, y){}
+function setAsBomb(x, y){}
