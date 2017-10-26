@@ -385,3 +385,13 @@ function getRandomXYtuple(maxX, maxY){
 	return rsp;
 	//Retorna uma lista no formato {x: 7, y:2} com x e y sendo randômicos
 }
+
+//KAREN POR FAZER
+function getActualTime(){
+	//Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
+}
+
+//Gera um número aleatório entre min e max
+function generateRandomBetween(min, max){
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
