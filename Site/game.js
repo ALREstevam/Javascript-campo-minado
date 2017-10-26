@@ -20,6 +20,7 @@ var playing = false;
 
 /*FUNÇÃO PRINCIPAL DO PROGRAMA: ATIVADA QUANDO UM ELEMENTO É CLICADO*/
 function elementClicked(id) {
+
     console.log("Element clicked at position:");
     var elemPos = recoveryPostion(id);//Recuperando as coordenadas do elemento clicado
     console.log(elemPos);
@@ -124,7 +125,6 @@ function renderHistoric(id){
     document.getElementById(id).innerHTML = historicToHtml();
 }
 
-
 /*Gerar a posição dos vizinhos em cruz*/
 function getNeighborsPositionCross(cellx, celly) {
     return[{x: cellx+1,y:celly},{x:cellx-1 ,y:celly},{x:cellx ,y:celly+1}, {x:cellx ,y:celly-1}];
@@ -228,7 +228,6 @@ function recoveryPostion(id) {
 function generateLogicalMatrix(maxX, maxY, bombs) {
 
     var mx = new Array();
-
     for(var x = 0; x < maxX; x++){
         var my = new Array();
         for(var y = 0; y < maxY; y++){
@@ -247,7 +246,7 @@ function generateLogicalMatrix(maxX, maxY, bombs) {
 
     var aMatrix = {
         bombNum: bombs,
-        openedCellCount: 0,
+        oppenedCellCount: 0,
         maxx: maxX,
         maxy: maxY,
         mx: mx
@@ -257,6 +256,7 @@ function generateLogicalMatrix(maxX, maxY, bombs) {
     console.log(aMatrix);
     return aMatrix;
 }
+
 
 function updateBigNameTitle(playename) {
     document.getElementById('gameBigTitle').innerHTML = "Campo Minado | Partida de: " + playename;
@@ -309,4 +309,3 @@ function setAsBomb(x, y) {
 function positionIsValid(posx, posy) {
     return false;
 }
-
