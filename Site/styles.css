@@ -1,7 +1,11 @@
 body{
     font-family: "Roboto", "Calibri Light", sans-serif;
     padding: 0;
-    margin: 0;
+    margin: -20px 0 0 0;
+    /*color: #292c2c;
+    background-color: whitesmoke;*/
+    color: whitesmoke;
+    background-color: #545856;
 }
 
 table {
@@ -18,7 +22,9 @@ table {
     cursor: pointer;
     transition: background 0.5s;
     min-width: 100px;
+    width: 90%;
 }
+
 
 .gameName{
     font-size: 30pt;
@@ -62,7 +68,7 @@ input{
     display: block;
     border: #545856 2px solid;
     padding: 3px;
-    margin: 3px;
+    margin: 3px 0 10px 0;
     transition: border 1s;
 }
 
@@ -91,21 +97,22 @@ input:invalid{
 
 .configsInside{
     padding: 10px;
-    background-color: whitesmoke;
+    background-color: inherit;
 }
 
 #gameArea{
-    background-color: whitesmoke;
-
-    float: right;
-    width: 84%;
+    background-color: inherit;
+    margin: 0;
+    float: left;
+    width: 80%;
+    padding: 10px 2% 10px 2%;
 }
 
 #gameArea .game{
-    background-color: aliceblue;
+    background-color: rgba(23, 159, 241, 0.41);
     min-width: 300px;
-    min-height: 300px;
-    border: solid rgba(23, 123, 187, 0.62) 1px;
+    min-height: 700px;
+    border: solid rgba(22, 103, 161, 1) 3px;
     padding: 10px;
     overflow: auto;
 }
@@ -132,9 +139,6 @@ table.game tr td button{
     height: 100%;
     margin: 0;
     padding: 0;
-
-    background-color: #177bbb;
-    border: solid 1px #1667a1;
     cursor: pointer;
 }
 
@@ -145,4 +149,67 @@ table.game tr td button:hover{
 .histElement{
     font-size: 10pt;
     line-height: 15%;
+}
+
+#gameBigTitle{
+    width: 96.9%;
+    background-color: #292c2c;
+    padding: 20px;
+    border-bottom: solid 3px #161717;
+    color: whitesmoke;
+}
+
+.openedCell{
+    background-color: #6cc4fd;
+    border: solid 1px #1c9bec;
+    font-weight: bolder;
+    font-size: 12pt;
+}
+
+.closedCell{
+    background-color: #177bbb;
+    border: solid 1px #1667a1;
+}
+
+.one:after{
+    color: #2c8c44;
+    content: "1";
+}
+
+.two:after{
+    color: #2a36bb;
+    content: "2";
+}
+
+.three:after{
+    color: #b24632;
+    content: "3";
+}
+
+.four:after{
+    content: "4";
+}
+
+.five:after{
+    content: "5";
+}
+
+.six:after{
+    content: "6";
+}
+
+.seven:after{
+    content: "7";
+}
+
+.eight:after{
+    content: "8";
+}
+
+.none{
+
+}
+
+.bomb:after{
+    content: "\01F4A3";
 }

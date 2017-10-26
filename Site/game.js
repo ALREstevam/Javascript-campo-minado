@@ -41,6 +41,7 @@ function setup() {
         document.getElementById('game').innerHTML = gameBoardHtml(matrix);
 
         playing = true;//Impedir que o jogo reinicie se clicar em iniciar jogo no meio de uma partida
+        //configHeight();
     }
     return false;
 }
@@ -49,6 +50,22 @@ function setup() {
 function pageLoad() {
     appendToHistoric("Teste", 1, 2, 3, 4, "Perdeu");//Apenas para testar o histórico
     renderHistoric("hist");
+    //configHeight();
+}
+
+function configHeight() {
+    /*var newHeight = (document.getElementById("configs").clientHeight - 20)+ "px";
+    document.getElementById("gameArea").style.setProperty("height", newHeight);*/
+
+    /*var confHeight = (document.getElementById("configs").clientHeight);
+    var gameHeight = (document.getElementById("gameArea").clientHeight);
+
+    if(confHeight > gameHeight){
+        document.getElementById("gameArea").style.setProperty("height", (confHeight - 20)+"px", "important");
+    }else{
+        document.getElementById("configs").style.setProperty("height", gameHeight+"px", "important");
+    }
+    */
 }
 
 
@@ -81,6 +98,7 @@ function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, match
 function clearHistoric(id){
     localStorage.removeItem('hist');
     renderHistoric(id);
+    //configHeight();
 }
 
 /*Ler histórico como um array de objetos
@@ -101,11 +119,10 @@ function historicToHtml(){
     }else{
         var hist = JSON.parse(localStorage.getItem('hist'));
 
-        console.log(elem);
-
         var rsp = "";
         for(var i = 0; i < hist.length; i++){
             var elem = hist[i];
+            console.log(elem);
             rsp += "<div class='histElement'>\n";
             rsp += "<p><strong>Jogador: </strong>"+ elem.player +"</p>\n";
             rsp += "<p><strong>Campo: </strong>"+ elem.fieldx +" x "+ elem.fieldy +"</p>\n";
@@ -195,21 +212,46 @@ function recursivelyExplore(cellx, celly, mx) {
 function gameBoardHtml(matrix) {
     var rsp = "";
     rsp += "<table class='game'>\n";
-        for(var row = 0; row < matrix.maxx; row++){
+        for(var row = 0; row < matrix.maxy; row++){
             rsp+="\t<tr>\n";
-            for(var column = 0; column < matrix.maxy; column++){
+            for(var column = 0; column < matrix.maxx; column++){
                 var pos = {
                     x: row,
                     y: column
                 };
 
+                
+                
+                
                 /*TODO Adicionar a verificação se a célula está aberta, se estiver mostrar o ícone dentro dela,
                 para facilitar podemos representar as bombas usando o caractere: &#128163;
+
+                De acordo com o valor da célula atribuir um dos seguintes conjuntos de classes ao button
+
+                 "openedCell bomb",
+                 "openedCell one",
+                 "openedCell two",
+                 "openedCell three",
+                 "openedCell four",
+                 "openedCell five",
+                 "openedCell six",
+                 "openedCell seven",
+                 "openedCell eight",
+                 "openedCell none",
+                 "closedCell"
                 */
 
-                rsp+="\t\t<td>\n\t\t\t<button value='"+ JSON.stringify(pos) +"' id='"+
+                // v Gera um exemplo de visualização - RETIRAR ISSO QUANDO O CÓDIGO ESTIVER FEITO
+                var arr =  ["closedCell", "closedCell", "closedCell", "closedCell", "openedCell none", "openedCell none", "openedCell none", "openedCell one", "openedCell two", "openedCell three", "closedCell bomb"];
+                var rand = arr[Math.floor(Math.random() * arr.length)];
+                console.log(rand);
+                // ^ Gera um exemplo de visualização - RETIRAR ISSO QUANDO O CÓDIGO ESTIVER FEITO
+
+                rsp+="\t\t<td>\n\t\t\t" +
+                    "<button value='"+ JSON.stringify(pos) +"' id='"+
                     (row.toString() + "," + column.toString()) +"'" +
-                    " onclick='elementClicked(this.id)'></button>\n\t\t</td>\n";
+                    " onclick='elementClicked(this.id)' class='"+ rand +"'>" +
+                    "</button>\n\t\t</td>\n";
             }
             rsp+="\t</tr>\n";
         }
