@@ -344,7 +344,13 @@ function setAsBomb(x, y) {
     matrix.mx[x][y].value = -1
 }
 
+function gerarPosAleatoriaX(xmax) {
+	return Math.floor(Math.random() * xmax + 1)
+}
 
+function gerarPosAleatoriaY(ymax) {
+	return Math.floor(Math.random() * ymax + 1)
+}
 
 /*
 * PARA QUEM FOR DESENVOLVER A VERIFICAÇÃO DE POSIÇÃO VÁLIDA: substituir esse código*/
