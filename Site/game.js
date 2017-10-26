@@ -52,7 +52,7 @@ function pageLoad() {
 
 
 /*Adicionar um elemento*/
-function  appendToHistoric(player, fieldx, fieldy, timeTaken, oppenedCells, matchResult) {
+function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult) {
 
     var histElem = {
         player: player,
@@ -60,7 +60,7 @@ function  appendToHistoric(player, fieldx, fieldy, timeTaken, oppenedCells, matc
         fieldx: fieldx,
         fieldy: fieldy,
         timeTaken: timeTaken,
-        oppenedCells: oppenedCells,
+        openedCells: openedCells,
         matchResult: matchResult
     };
     var histsArray = new Array();
@@ -109,7 +109,7 @@ function historicToHtml(){
             rsp += "<p><strong>Jogador: </strong>"+ elem.player +"</p>\n";
             rsp += "<p><strong>Campo: </strong>"+ elem.fieldx +" x "+ elem.fieldy +"</p>\n";
             rsp += "<p><strong>Tempo: </strong>"+ elem.timeTaken +"</p>\n";
-            rsp += "<p><strong>Células abertas: </strong>"+ elem.oppenedCells +"</p>\n";
+            rsp += "<p><strong>Células abertas: </strong>"+ elem.openedCells +"</p>\n";
             rsp += "<p><strong>Resultado: </strong>"+ elem.matchResult +"</p>\n";
             rsp += "</div>\n";
             rsp += "<hr>\n";
@@ -247,7 +247,7 @@ function generateLogicalMatrix(maxX, maxY, bombs) {
 
     var aMatrix = {
         bombNum: bombs,
-        oppenedCellCount: 0,
+        openedCellCount: 0,
         maxx: maxX,
         maxy: maxY,
         mx: mx
@@ -262,6 +262,46 @@ function updateBigNameTitle(playename) {
     document.getElementById('gameBigTitle').innerHTML = "Campo Minado | Partida de: " + playename;
 }
 
+//Consulta uma posição na matriz e retorna se ela está marcada como aberta
+function isOpened(x, y){//[][]
+    return matrix.mx[x][y].isExplored;
+}
+
+//Consulta uma posição na matriz e retorna se ela está marcada como aberta pelo cheat
+function isOpenedByCheat(x, y){//[][]
+    return matrix.mx[x][y].isOpenByCheat;
+}
+
+//Consulta um valor numa posição da matriz (valor é o número entre -1 e 8)
+function getValueAt(x, y){//[][]
+    return matrix.mx[x][y].value;
+}
+
+//Seta um valor numa posição
+function setValueAt(x, y, val) {
+    matrix.mx[x][y].value = val;
+}
+
+//Seta uma célula como aberta
+function openCell(x, y) {
+    matrix.mx[x][y].isExplored = true;
+}
+
+//Seta uma célula como aberta por cheat
+function openCellByCheat(x, y) {
+    matrix.mx[x][y].isOpenByCheat = true;
+}
+
+//Retorna true se existir uma boma na posição
+function isBomb(x, y) {
+    return matrix.mx[x][y].value == -1;
+}
+
+//Seta uma posição como sendo bomba
+function setAsBomb(x, y) {
+    matrix.mx[x][y].value = -1
+}
+
 
 
 /*
@@ -269,3 +309,4 @@ function updateBigNameTitle(playename) {
 function positionIsValid(posx, posy) {
     return false;
 }
+
