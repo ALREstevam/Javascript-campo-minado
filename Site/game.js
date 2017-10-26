@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by andre on 13/10/2017.
  */
 "use strict";
@@ -23,7 +23,7 @@ var cellElementExample = {
     //Funções do histórico
 
 /*
-OBS: como um adicional, o histórico ficará armazenaodo mesmo que o usuário deixe a página.
+OBS: como um adicional, o histórico ficará armazenado mesmo que o usuário deixe a página.
 */
 
 /*Adicionar um elemento*/
@@ -177,9 +177,54 @@ function recoveryPostion(id) {
 }
 
 
-
-
-
 function test() {
     document.getElementById('game').innerHTML = gameBoardHtml(50, 50);
 }
+
+
+//Funções - Pedro
+
+
+function mudarNome()
+{
+
+ if(document.getElementById("cheatOption").value == "Não")
+ {
+  document.getElementById("cheatOption").value = "Sim";
+ } 
+ else
+ 
+  document.getElementById("cheatOption").value = "Não";
+ 
+}
+
+abrirUmaCelulaCheat(maxX,maxY){
+	for(i=0;i<maxX;i++){
+		for(j=0;j<maxY;y++){
+			isOpenByCheat:true;
+		}
+	}
+	atualizarVizualizacaoTabuleiro();
+}
+
+fecharUmaCelulaCheat(maxX,maxY){
+	for(i=0;i<maxX;i++){
+		for(j=0;j<maxY;y++){
+			isOpenByCheat:false;
+		}
+	}
+	atualizarVizualizacaoTabuleiro();
+}
+
+abrirUmaCelula(){
+		isExplored: true;
+		
+}
+
+
+
+
+
+
+
+
