@@ -187,22 +187,27 @@ table.game tr td button:hover{
 }
 
 .four:after{
+    color: #a2412c;
     content: "4";
 }
 
 .five:after{
+    color: #b23421;
     content: "5";
 }
 
 .six:after{
+    color: #b22a1c;
     content: "6";
 }
 
 .seven:after{
+    color: #d62e1c;
     content: "7";
 }
 
 .eight:after{
+    color: #fa2915;
     content: "8";
 }
 
