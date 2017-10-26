@@ -1,6 +1,6 @@
 
 // **OBS.:** os nomes das funções das variáveis e dos argumentos são só exemplos.
-
+// **OBS.:** esse arquivo não deve ser utilizado no site, é um .js apenas para o github aplicar as cores nas funções e comentários.
 
 function functionName(args...){//[implementado? (s: sim, n: não, p: parcialmente)][pessoa]
 
