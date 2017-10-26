@@ -344,16 +344,39 @@ function setAsBomb(x, y) {
     matrix.mx[x][y].value = -1
 }
 
-function gerarPosAleatoriaX(xmax) {
-	return Math.floor(Math.random() * xmax + 1)
-}
-
-function gerarPosAleatoriaY(ymax) {
-	return Math.floor(Math.random() * ymax + 1)
-}
-
 /*
 * PARA QUEM FOR DESENVOLVER A VERIFICAÇÃO DE POSIÇÃO VÁLIDA: substituir esse código*/
 function positionIsValid(posx, posy) {
     return false;
+}
+
+//KAREN POR FAZER
+function generateGameBoardHTML(x, y){
+	// Itera na matriz da memória e dependendo dos valores guardados gera um HTML correspondente
+}
+
+//coloca aleatoriamente as bombas no tabuleiro
+function putBombsInMatrix(xmax, ymax ,qntBombas){
+	var a, b, c, d;
+	for (a=0;a<qntBombas;a++) {
+		b = Math.floor(Math.random() * xmax + 1);
+		c = Math.floor(Math.random() * ymax + 1);
+		for (d=0; d<xmax*ymax ;d++) {
+			if (isBomb(b, c) != true) {
+				setAsBomb(b, c)
+			} else {
+				b = Math.floor(Math.random() * xmax + 1);
+				c = Math.floor(Math.random() * ymax + 1);
+			}
+		}
+	}
+	//Para cada boma gera um valor de x e y aleatório e válido
+	//Procura para a posição x e y gerada verifica se já existe bomba nessa posição
+	//Se não houver coloca
+	//Se houver repete o processo até encontrar uma célula vazia
+}
+
+//KAREN POR FAZER
+function calculateMatchTime(startTime, endTime){
+	//Calcula o tempo entre endTime e startTime
 }
