@@ -243,14 +243,14 @@ function gameBoardHtml(matrix) {
 
                 // v Gera um exemplo de visualização - RETIRAR ISSO QUANDO O CÓDIGO ESTIVER FEITO
                 var arr =  ["closedCell", "closedCell", "closedCell", "closedCell", "openedCell none", "openedCell none", "openedCell none", "openedCell one", "openedCell two", "openedCell three", "closedCell bomb"];
-                var rand = arr[Math.floor(Math.random() * arr.length)];
-                console.log(rand);
+                var value = arr[Math.floor(Math.random() * arr.length)];
+                console.log(value);
                 // ^ Gera um exemplo de visualização - RETIRAR ISSO QUANDO O CÓDIGO ESTIVER FEITO
 
                 rsp+="\t\t<td>\n\t\t\t" +
                     "<button value='"+ JSON.stringify(pos) +"' id='"+
                     (row.toString() + "," + column.toString()) +"'" +
-                    " onclick='elementClicked(this.id)' class='"+ rand +"'>" +
+                    " onclick='elementClicked(this.id)' class='"+ value +"'>" +
                     "</button>\n\t\t</td>\n";
             }
             rsp+="\t</tr>\n";
