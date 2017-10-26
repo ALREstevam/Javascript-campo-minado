@@ -41,7 +41,7 @@ function pageLoaded(){
 
 "[N][May]"
 function restartGame(){
-	//Obter dados da partida e gravar no histórico
+	//OBS. DESISTÊNCIA Obter dados da partida e gravar no histórico (CONSIDERAR FAZER)
 	//Atualizar a visualização do histórico em html
 	//Zerar variáveis utilizadas que possam interferir na próxima partida
 	//Criar um novo jogo
@@ -294,7 +294,7 @@ function updateBigNameTitle(playename){
 }
 
 "[][May]"
-function positionIsValid(x, y, ...){
+function positionIsValid(x, y){
 	//Retorna true se x e y indicar uma posição dentro do tabuleiro
 }
 
@@ -319,6 +319,7 @@ function gameBoardHtml(matrix){}
 function recoveryPostion(id){}
 function generateLogicalMatrix(maxX, maxY, bombs){}
 function updateBigNameTitle(playename){}
+
 function isOpened(x, y){}
 function isOpenedByCheat(x, y){}
 function getValueAt(x, y){}
