@@ -382,6 +382,6 @@ function getRandomXYtuple(maxX, maxY){
 	b = Math.floor(Math.random() * ymax + 1);
 	rsp["x"] = a;
 	rsp["y"] = b;;
-	return rt;
+	return rsp;
 	//Retorna uma lista no formato {x: 7, y:2} com x e y sendo randômicos
 }
