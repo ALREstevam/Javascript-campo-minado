@@ -11,10 +11,10 @@
 </head>
 <body onload="pageLoad();">
 <h1 id="gameBigTitle">Campo Minado | Partida de: </h1>
-<div class="configs">
+<div class="configs" id="configs">
     <div id="setupArea" class="configsInside">
         <h2>Configurar jogo</h2>
-        <form name="setupForm" onsubmit="return setup();">
+        <form name="setupForm" onsubmit="return setup()">
             <label for="name">Nome</label>
             <input type="text" name="nome" id="name" placeholder="Seu Nome Aqui" required class="inputFill">
 
@@ -48,7 +48,7 @@
         <div id="hist">
 
         </div>
-        <button id="clearHist" name="clearHust" class="button redButton" onclick="clearHistoric('hist')">Apagar histórico</button>
+        <button id="clearHist" name="clearHust" class="button redButton" onclick="clearHistoric('hist');configHeight();">Apagar histórico</button>
     </div>
 </div>
 
