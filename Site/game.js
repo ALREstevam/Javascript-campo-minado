@@ -363,11 +363,10 @@ function putBombsInMatrix(xmax, ymax ,qntBombas){
 		c = Math.floor(Math.random() * ymax + 1);
 		for (d=0; d<xmax*ymax ;d++) {
 			if (isBomb(b, c) != true) {
-				setAsBomb(b, c)
-			} else {
-				b = Math.floor(Math.random() * xmax + 1);
-				c = Math.floor(Math.random() * ymax + 1);
+				setAsBomb(b, c);
 			}
+			b = Math.floor(Math.random() * xmax + 1);
+			c = Math.floor(Math.random() * ymax + 1);
 		}
 	}
 	//Para cada boma gera um valor de x e y aleatório e válido
@@ -376,7 +375,13 @@ function putBombsInMatrix(xmax, ymax ,qntBombas){
 	//Se houver repete o processo até encontrar uma célula vazia
 }
 
-//KAREN POR FAZER
-function calculateMatchTime(startTime, endTime){
-	//Calcula o tempo entre endTime e startTime
+//gera um arranjo de coordenadas x,y aleatórias
+function getRandomXYtuple(maxX, maxY){
+	var a, b, rsp[2];
+	a = Math.floor(Math.random() * xmax + 1);
+	b = Math.floor(Math.random() * ymax + 1);
+	rsp["x"] = a;
+	rsp["y"] = b;;
+	return rt;
+	//Retorna uma lista no formato {x: 7, y:2} com x e y sendo randômicos
 }
