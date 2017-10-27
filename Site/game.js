@@ -36,6 +36,8 @@ var playing = false;
 
 
 
+
+
 /*FUNÇÃO PRINCIPAL DO PROGRAMA: ATIVADA QUANDO UM ELEMENTO É CLICADO*/
 function elementClicked(id) {
 
@@ -306,7 +308,6 @@ function generateLogicalMatrix(maxX, maxY, bombs) {
         }
         mx.push(my);
     }
-
     var aMatrix = {
         bombNum: bombs,
         oppenedCellCount: 0,
