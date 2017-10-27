@@ -7,8 +7,26 @@
 * TODO: a variávels 'playing' precisa ser definida como false no fim de uma partida
 * OBS: como um adicional, o histórico ficará armazenaodo mesmo que o usuário deixe a página.
 *
-*
-* */
+
+
+OPERANDO NA MATRIZ
+
+matrix =
+{
+     var aMatrix = {
+     bombNum: bombs,
+     oppenedCellCount: 0,
+     maxx: maxX,
+     maxy: maxY,
+     mx: {//pode ser acessado por mx[x][y], cada célula está no formato:
+         posx: x,
+         posy: y,
+         isExplored: false,
+         isOpenByCheat: false,
+         value: 0
+     }
+}
+*/
 
 
 var matrix;

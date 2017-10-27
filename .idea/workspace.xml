@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30ecdb6b-a142-414a-b37c-b5315571be22" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Site/game.js" afterPath="$PROJECT_DIR$/Site/game.js" />
     </list>
     <ignored path="Javascript-campo-minado.iws" />
@@ -38,8 +37,8 @@
       <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Site/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="375" column="1" selection-start-line="375" selection-start-column="1" selection-end-line="375" selection-end-column="1" />
+            <state relative-caret-position="136">
+              <caret line="20" column="72" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -220,12 +219,12 @@
       <workItem from="1509012812323" duration="4876000" />
       <workItem from="1509046775818" duration="6606000" />
       <workItem from="1509054499144" duration="527000" />
-      <workItem from="1509121138497" duration="489000" />
+      <workItem from="1509121138497" duration="672000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38212000" />
+    <option name="totallyTimeSpent" value="38395000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -596,8 +595,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Site/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="375" column="1" selection-start-line="375" selection-start-column="1" selection-end-line="375" selection-end-column="1" />
+        <state relative-caret-position="136">
+          <caret line="20" column="72" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
           <folding />
         </state>
       </provider>
