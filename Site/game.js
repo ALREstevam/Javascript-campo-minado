@@ -408,8 +408,13 @@ function getRandomXYtuple(maxX, maxY){
 	//Retorna uma lista no formato {x: 7, y:2} com x e y sendo randômicos
 }
 
-//KAREN POR FAZER
+//retorna a data atual para computar o tempo gasto na partida
 function getActualTime(){
+	var newDate = new Date();
+	dateString += (newDate.getMonth() + 1) + "/";
+	dateString += newDate.getDate() + "/";
+	dateString += newDate.getFullYear();
+	return dateString;
 	//Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
 }
 
@@ -431,6 +436,14 @@ function winMsg(){
 //fecha menssagens de aviso
 function closepicture(id){
 	document.getElementById(id).style.visibility="hidden";
+	
+}
+function fillMatrixWithValues(){
+  for(var l=0; l<matrix.maxx; l++){
+    for(var c=0; c<matrix.maxx; c++)
+		if(!isBomb(l, c)){
+		   setValueAt(l, c, countMinesAroudCircle(matrix, l, c));
+		}
 	
 }
 
