@@ -7,8 +7,26 @@
 * TODO: a variávels 'playing' precisa ser definida como false no fim de uma partida
 * OBS: como um adicional, o histórico ficará armazenaodo mesmo que o usuário deixe a página.
 *
-*
-* */
+
+
+OPERANDO NA MATRIZ
+
+matrix =
+{
+     var aMatrix = {
+     bombNum: bombs,
+     oppenedCellCount: 0,
+     maxx: maxX,
+     maxy: maxY,
+     mx: {//pode ser acessado por mx[x][y], cada célula está no formato:
+         posx: x,
+         posy: y,
+         isExplored: false,
+         isOpenByCheat: false,
+         value: 0
+     }
+}
+*/
 
 
 var matrix;
@@ -344,10 +362,54 @@ function setAsBomb(x, y) {
     matrix.mx[x][y].value = -1
 }
 
-
-
 /*
 * PARA QUEM FOR DESENVOLVER A VERIFICAÇÃO DE POSIÇÃO VÁLIDA: substituir esse código*/
 function positionIsValid(posx, posy) {
     return false;
+}
+
+//KAREN POR FAZER
+function generateGameBoardHTML(x, y){
+	// Itera na matriz da memória e dependendo dos valores guardados gera um HTML correspondente
+}
+
+//coloca aleatoriamente as bombas no tabuleiro
+function putBombsInMatrix(xmax, ymax ,qntBombas){
+	var a, b, c, d;
+	for (a=0;a<qntBombas;a++) {
+		b = Math.floor(Math.random() * xmax + 1);
+		c = Math.floor(Math.random() * ymax + 1);
+		for (d=0; d<xmax*ymax ;d++) {
+			if (isBomb(b, c) != true) {
+				setAsBomb(b, c);
+			}
+			b = Math.floor(Math.random() * xmax + 1);
+			c = Math.floor(Math.random() * ymax + 1);
+		}
+	}
+	//Para cada boma gera um valor de x e y aleatório e válido
+	//Procura para a posição x e y gerada verifica se já existe bomba nessa posição
+	//Se não houver coloca
+	//Se houver repete o processo até encontrar uma célula vazia
+}
+
+//gera um arranjo de coordenadas x,y aleatórias
+function getRandomXYtuple(maxX, maxY){
+	var a, b, rsp = new Array(2);
+	a = Math.floor(Math.random() * xmax + 1);
+	b = Math.floor(Math.random() * ymax + 1);
+	rsp["x"] = a;
+	rsp["y"] = b;
+	return rsp;
+	//Retorna uma lista no formato {x: 7, y:2} com x e y sendo randômicos
+}
+
+//KAREN POR FAZER
+function getActualTime(){
+	//Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
+}
+
+//Gera um número aleatório entre min e max
+function generateRandomBetween(min, max){
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
