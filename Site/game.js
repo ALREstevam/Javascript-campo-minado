@@ -365,7 +365,10 @@ function setAsBomb(x, y) {
 /*
 * PARA QUEM FOR DESENVOLVER A VERIFICAÇÃO DE POSIÇÃO VÁLIDA: substituir esse código*/
 function positionIsValid(posx, posy) {
-    return false;
+    if(posx>=0 && posx<matrix.maxx && posy>=0 && posy<matrix.maxy)
+    	return true;
+    else
+    	return false;
 }
 
 //KAREN POR FAZER
@@ -412,4 +415,27 @@ function getActualTime(){
 //Gera um número aleatório entre min e max
 function generateRandomBetween(min, max){
 	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function restartGame(id){
+	//OBS. DESISTÊNCIA Obter dados da partida e gravar no histórico (CONSIDERAR FAZER)
+	get_data();
+	appendToHistoric();
+	//Atualizar a visualização do histórico em html
+	renderHistoric(id);
+	//Zerar variáveis utilizadas que possam interferir na próxima partida
+	resetGameVariables();
+	//Criar um novo jogo
+
+}
+
+function resetGameVariables(){
+	//Verificar se existem variáveis a serem resetadas ou visualizações a serem atualizadas antes da nova partida
+	playing = false;
+	playename = "*";
+	//Ex: jogador ativou o cheat, desativar para a próxima partida?
+	//Se for complexo um refresh na página já faz esse trabalho
+	document.forms["setupForm"]["name"].value="Seu Nome Aqui";
+	document.forms["setupForm"]["number"].value="1";
+
 }
