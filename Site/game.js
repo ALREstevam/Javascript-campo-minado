@@ -409,6 +409,11 @@ function getRandomXYtuple(maxX, maxY){
 
 //KAREN POR FAZER
 function getActualTime(){
+	var newDate = new Date();
+	dateString += (newDate.getMonth() + 1) + "/";
+	dateString += newDate.getDate() + "/";
+	dateString += newDate.getFullYear();
+	return dateString;
 	//Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
 }
 
