@@ -69,6 +69,8 @@ function setup() {
 
 /*Função chamada assim que a página é carregada*/
 function pageLoad() {
+
+    testTime();
 	closepicture('VITORIA');
 	closepicture('DERROTA');
     appendToHistoric("Teste", 1, 2, 3, 4, "Perdeu");//Apenas para testar o histórico
@@ -410,10 +412,12 @@ function getRandomXYtuple(maxX, maxY){
 
 //retorna a data atual para computar o tempo gasto na partida
 function getActualTime(){
-	var newDate = new Date();
+	var dateString = "";
+    var newDate = new Date();
 	dateString += (newDate.getMonth() + 1) + "/";
 	dateString += newDate.getDate() + "/";
 	dateString += newDate.getFullYear();
+
 	return dateString;
 	//Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
 }
@@ -438,15 +442,32 @@ function closepicture(id){
 	document.getElementById(id).style.visibility="hidden";
 	
 }
-function fillMatrixWithValues(){
-  for(var l=0; l<matrix.maxx; l++){
-    for(var c=0; c<matrix.maxx; c++)
-		if(!isBomb(l, c)){
-		   setValueAt(l, c, countMinesAroudCircle(matrix, l, c));
-		}
-	
+function fillMatrixWithValues() {
+    for (var l = 0; l < matrix.maxx; l++) {
+        for (var c = 0; c < matrix.maxx; c++)
+            if (!isBomb(l, c)) {
+                setValueAt(l, c, countMinesAroudCircle(matrix, l, c));
+            }
+    }
 }
 
+function testTime() {
+    var dt0 = new Date();
+    alert('t');
+    var dt1 = new Date();
+    console.log(dt1.valueOf());
+    var diff = dt1.valueOf() - dt0.valueOf();
+    console.log(millisToMinutesAndSeconds(diff));
+}
 
+function actTm() {
+    return new Date().valueOf();
+}
+
+function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
 
 
