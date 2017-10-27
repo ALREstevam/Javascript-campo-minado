@@ -377,11 +377,11 @@ function putBombsInMatrix(xmax, ymax ,qntBombas){
 
 //gera um arranjo de coordenadas x,y aleatórias
 function getRandomXYtuple(maxX, maxY){
-	var a, b, rsp[2];
+	var a, b, rsp = new Array(2);
 	a = Math.floor(Math.random() * xmax + 1);
 	b = Math.floor(Math.random() * ymax + 1);
 	rsp["x"] = a;
-	rsp["y"] = b;;
+	rsp["y"] = b;
 	return rsp;
 	//Retorna uma lista no formato {x: 7, y:2} com x e y sendo randômicos
 }
