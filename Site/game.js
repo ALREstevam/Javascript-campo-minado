@@ -432,6 +432,14 @@ function closepicture(id){
 	document.getElementById(id).style.visibility="hidden";
 	
 }
+function fillMatrixWithValues(){
+  for(var l=0; l<matrix.maxx; l++){
+    for(var c=0; c<matrix.maxx; c++)
+		if(!isBomb(l, c)){
+		   setValueAt(l, c, countMinesAroudCircle(matrix, l, c));
+		}
+	
+}
 
 
 
