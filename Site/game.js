@@ -36,6 +36,8 @@ var playing = false;
 
 
 
+
+
 /*FUNÇÃO PRINCIPAL DO PROGRAMA: ATIVADA QUANDO UM ELEMENTO É CLICADO*/
 function elementClicked(id) {
 
@@ -46,6 +48,7 @@ function elementClicked(id) {
 
 /*FUNÇÃO A SER ACIONADA QUANDO O JOGADOR CLICAR EM INICIAR O JOGO*/
 function setup() {
+	
     if(!playing){
         playername = document.forms["setupForm"]["name"].value;
         var mxMaxX = document.forms["setupForm"]["tblx"].value;
@@ -66,6 +69,10 @@ function setup() {
 
 /*Função chamada assim que a página é carregada*/
 function pageLoad() {
+
+    testTime();
+	closepicture('VITORIA');
+	closepicture('DERROTA');
     appendToHistoric("Teste", 1, 2, 3, 4, "Perdeu");//Apenas para testar o histórico
     renderHistoric("hist");
     //configHeight();
@@ -303,7 +310,6 @@ function generateLogicalMatrix(maxX, maxY, bombs) {
         }
         mx.push(my);
     }
-
     var aMatrix = {
         bombNum: bombs,
         oppenedCellCount: 0,
@@ -404,8 +410,15 @@ function getRandomXYtuple(maxX, maxY){
 	//Retorna uma lista no formato {x: 7, y:2} com x e y sendo randômicos
 }
 
-//KAREN POR FAZER
+//retorna a data atual para computar o tempo gasto na partida
 function getActualTime(){
+	var dateString = "";
+    var newDate = new Date();
+	dateString += (newDate.getMonth() + 1) + "/";
+	dateString += newDate.getDate() + "/";
+	dateString += newDate.getFullYear();
+
+	return dateString;
 	//Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
 }
 
@@ -413,3 +426,48 @@ function getActualTime(){
 function generateRandomBetween(min, max){
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+//Emite menssagem informando que o jogador perdeu
+function looseMsg(){
+	document.getElementById('DERROTA').style.visibility= "visible";
+}
+
+//Emite menssagem informando que o jogador ganhou
+function winMsg(){
+	document.getElementById('VITORIA').style.visibility= "visible";
+}
+
+//fecha menssagens de aviso
+function closepicture(id){
+	document.getElementById(id).style.visibility="hidden";
+	
+}
+function fillMatrixWithValues() {
+    for (var l = 0; l < matrix.maxx; l++) {
+        for (var c = 0; c < matrix.maxx; c++)
+            if (!isBomb(l, c)) {
+                setValueAt(l, c, countMinesAroudCircle(matrix, l, c));
+            }
+    }
+}
+
+function testTime() {
+    var dt0 = new Date();
+    alert('t');
+    var dt1 = new Date();
+    console.log(dt1.valueOf());
+    var diff = dt1.valueOf() - dt0.valueOf();
+    console.log(millisToMinutesAndSeconds(diff));
+}
+
+function actTm() {
+    return new Date().valueOf();
+}
+
+function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
+
+
