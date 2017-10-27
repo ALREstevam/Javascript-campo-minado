@@ -407,7 +407,7 @@ function getRandomXYtuple(maxX, maxY){
 	//Retorna uma lista no formato {x: 7, y:2} com x e y sendo randômicos
 }
 
-//KAREN POR FAZER
+//retorna a data atual para computar o tempo gasto na partida
 function getActualTime(){
 	var newDate = new Date();
 	dateString += (newDate.getMonth() + 1) + "/";
