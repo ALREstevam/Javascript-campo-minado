@@ -46,6 +46,7 @@ function elementClicked(id) {
 
 /*FUNÇÃO A SER ACIONADA QUANDO O JOGADOR CLICAR EM INICIAR O JOGO*/
 function setup() {
+	
     if(!playing){
         playername = document.forms["setupForm"]["name"].value;
         var mxMaxX = document.forms["setupForm"]["tblx"].value;
@@ -66,6 +67,8 @@ function setup() {
 
 /*Função chamada assim que a página é carregada*/
 function pageLoad() {
+	closepicture('VITORIA');
+	closepicture('DERROTA');
     appendToHistoric("Teste", 1, 2, 3, 4, "Perdeu");//Apenas para testar o histórico
     renderHistoric("hist");
     //configHeight();
@@ -413,3 +416,23 @@ function getActualTime(){
 function generateRandomBetween(min, max){
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+//Emite menssagem informando que o jogador perdeu
+function looseMsg(){
+	document.getElementById('DERROTA').style.visibility= "visible";
+}
+
+//Emite menssagem informando que o jogador ganhou
+function winMsg(){
+	document.getElementById('VITORIA').style.visibility= "visible";
+}
+
+//fecha menssagens de aviso
+function closepicture(id){
+	document.getElementById(id).style.visibility="hidden";
+	
+}
+
+
+
+
