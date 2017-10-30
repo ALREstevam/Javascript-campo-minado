@@ -72,14 +72,8 @@ function setup() {
 /*Função chamada assim que a página é carregada*/
 function pageLoad() {
 
-
-    testTime();
 	closepicture('VITORIA');
 	closepicture('DERROTA');
-
-    appendToHistoric("Teste", 1, 2, 3, 4, "Perdeu");//Apenas para testar o histórico
-    renderHistoric("hist");
-    //configHeight();
 }
 
 function configHeight() {
@@ -432,31 +426,42 @@ function generateRandomBetween(min, max){
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function restartGame(id){
+function restartGame(){
+	console.log('RESTARTING GAME');
 	//OBS. DESISTÊNCIA Obter dados da partida e gravar no histórico (CONSIDERAR FAZER)
-	get_data();
-	appendToHistoric();
-	//Atualizar a visualização do histórico em html
-	renderHistoric(id);
+	
 	//Zerar variáveis utilizadas que possam interferir na próxima partida
 	resetGameVariables();
 
+	//get_data();
+	//appendToHistoric();
+	//Atualizar a visualização do histórico em html
+	renderHistoric("hist");
+	
 	//Criar um novo jogo
 
-
+	return false;
 }
 
 function resetGameVariables(){
+	console.log('RESTARTING VARIABLES');
 	//Verificar se existem variáveis a serem resetadas ou visualizações a serem atualizadas antes da nova partida
 	playing = false;
-	playename = "*";
+	playername = "*";
 	//Ex: jogador ativou o cheat, desativar para a próxima partida?
-	resetar variavel
-	chama a função 
+	//resetar variavel
+	//chama a função ..cheat
 	//Se for complexo um refresh na página já faz esse trabalho
-	//document.forms["setupForm"]["name"].value="Seu Nome Aqui";
-	//document.forms["setupForm"]["number"].set..=" ";
+	document.getElementById("name").value="";
+	document.getElementById("tblx").value="";
+	document.getElementById("tbly").value="";
+	document.getElementById("bombAmount").value="";
+	document.getElementById("gameBigTitle").innerHTML="Campo Minado | Partida de:";
+	//document.forms["setupForm"]["tblx"].setAttribute("value", ""); 
+	
+
 }
+
 
 //fecha menssagens de aviso
 function closepicture(id){
@@ -490,6 +495,7 @@ function millisToMinutesAndSeconds(millis) {
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
+
 
 
 
