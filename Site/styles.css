@@ -110,22 +110,24 @@ input:invalid{
 
 #gameArea .game{
     background-color: rgba(23, 159, 241, 0.41);
-    min-width: 300px;
-    min-height: 700px;
     border: solid rgba(22, 103, 161, 1) 3px;
     padding: 10px;
     overflow: auto;
 }
 
 table.game{
+    display: table;
     margin: 0 auto;
 }
 
 table.game tr td{
     width: 20px;
     height: 20px;
+    max-width: 20px;
+    max-height: 20px;
     margin: 0;
     padding: 0;
+    display: inline-block;
 }
 
 table.game tbody{
@@ -171,32 +173,43 @@ table.game tr td button:hover{
     border: solid 1px #1667a1;
 }
 
+.cellOpenByCheat{
+    background-color: #fdae97;
+}
+
+
 .one:after{
+    font-weight: bold;
     color: #2c8c44;
     content: "1";
 }
 
 .two:after{
+    font-weight: bold;
     color: #2a36bb;
     content: "2";
 }
 
 .three:after{
+    font-weight: bold;
     color: #b24632;
     content: "3";
 }
 
 .four:after{
+    font-weight: bold;
     color: #a2412c;
     content: "4";
 }
 
 .five:after{
+    font-weight: bold;
     color: #b23421;
     content: "5";
 }
 
 .six:after{
+    font-weight: bold;
     color: #b22a1c;
     content: "6";
 }
@@ -207,6 +220,7 @@ table.game tr td button:hover{
 }
 
 .eight:after{
+    font-weight: bold;
     color: #fa2915;
     content: "8";
 }
@@ -217,14 +231,15 @@ table.game tr td button:hover{
 
 .bomb:after{
     content: "\01F4A3";
+    font-size: 12pt;
 }
 
-#DERROTA {
+#derrota {
     visibility: hidden;
     width: 100%;
     height: 700px;
     float: left;
-    background: url('fogo.png') center no-repeat rgba(51, 51, 51, 0.76);
+    background: url('fire.png') center no-repeat rgba(51, 51, 51, 0.76);
     background-size: 700px ;
     text-align:center;
     line-height: 500px;
@@ -236,12 +251,12 @@ table.game tr td button:hover{
     color: #8B0000;
 }
 
-#VITORIA {
+#vitoria {
     visibility: hidden;
     width: 100%;
     height: 700px;
     float: left;
-    background: url('FOGOS.png') center no-repeat rgba(51, 51, 51, 0.76);
+    background: url('fireworks.png') center no-repeat rgba(51, 51, 51, 0.76);
     background-size: 700px ;
     text-align:center;
     line-height: 500px;
@@ -251,17 +266,16 @@ table.game tr td button:hover{
     top: 0;
     font-weight: bold;
     color: whitesmoke;
-
 }
 
-#VITORIA button{
+#vitoria button{
     position: fixed;
     width: 50px;
     height: 50px;
     margin-top: -200px;
 
 }
-#DERROTA button{
+#derrota button{
     position: fixed;
     width: 50px;
     height: 50px;
