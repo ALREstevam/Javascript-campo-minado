@@ -379,6 +379,7 @@ function positionIsValid(posx, posy) {
 //KAREN POR FAZER
 function generateGameBoardHTML(x, y){
 	// Itera na matriz da memória e dependendo dos valores guardados gera um HTML correspondente
+	//OBS.: essa função está parcialmente implementada. Ver: gameBoardHtml()
 }
 
 //coloca aleatoriamente as bombas no tabuleiro
