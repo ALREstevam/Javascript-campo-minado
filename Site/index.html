@@ -5,8 +5,9 @@
     <title>&#128163; Campo minado</title>
 
     <link href="styles.css" type="text/css" rel="stylesheet">
+    <script src="util.js"></script>
+    <script src="historic.js"></script>
     <script src="game.js"></script>
-
 
 </head>
 <body onload="pageLoad();">
@@ -18,10 +19,10 @@
             <label for="name">Nome</label>
             <input type="text" name="nome" id="name" placeholder="Seu Nome Aqui" required class="inputFill">
 
-            <label for="tblx">Largura do tabuleiro</label>
+            <label for="tblx">Altura do tabuleiro</label>
             <input type="number" placeholder="30" name="tblx" id="tblx" min="2" required class="inputFill">
 
-            <label for="tbly">Altura do tabuleiro</label>
+            <label for="tbly">Largura do tabuleiro</label>
             <input type="number" placeholder="30" name="tbly" id="tbly" min="2" required class="inputFill">
 
             <label for="bombAmount">Quantidade de bombas</label>
@@ -33,10 +34,10 @@
 
     <div id="optionsArea" class="configsInside">
         <h2>Opções</h2>
-        <form name="cheatForm">
             <label for="cheatOption">Mostrar células</label>
-            <button type="submit" name="cheatOption" id="cheatOption" class="button greenButton">Não</button>
-        </form>
+            <button type="submit" name="cheatOption" id="cheatOption" class="button greenButton" onclick="cheat();">Não</button>
+
+
         <form name="restartGameForm">
             <label for="resetGame">Reiniciar jogo</label>
             <button type="submit" name="restartGame" id="resetGame" class="button blueButton">Reiniciar</button>
@@ -60,15 +61,14 @@
     </div>
 </div>
 
-<div id="VITORIA">
-<p> VOCÊ VENCEU !!! </p>
-<button id="reiniciar" class="button" onclick="closepicture('VITORIA')">Novo Jogo</button>
-
+<div id="vitoria">
+    <p>VOCÊ VENCEU!!!</p>
+    <button id="reiniciarvit" class="button" onclick="closepicture('vitoria')">Novo Jogo</button>
 </div>
 
-<div id="DERROTA">
-<p> VOCÊ PERDEU </p>
-<button id="reiniciar" class="button" onclick="closepicture('DERROTA')">Novo Jogo</button>
+<div id="derrota">
+    <p>VOCÊ PERDEU</p>
+    <button id="reiniciarped" class="button" onclick="closepicture('derrota')">Novo Jogo</button>
 </div>
 
 </body>
