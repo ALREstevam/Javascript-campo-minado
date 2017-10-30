@@ -46,7 +46,6 @@ function elementClicked(id) {
 
 /*FUNÇÃO A SER ACIONADA QUANDO O JOGADOR CLICAR EM INICIAR O JOGO*/
 function setup() {
-	
     if(!playing){
         playername = document.forms["setupForm"]["name"].value;
         var mxMaxX = document.forms["setupForm"]["tblx"].value;
@@ -67,8 +66,6 @@ function setup() {
 
 /*Função chamada assim que a página é carregada*/
 function pageLoad() {
-	closepicture('VITORIA');
-	closepicture('DERROTA');
     appendToHistoric("Teste", 1, 2, 3, 4, "Perdeu");//Apenas para testar o histórico
     renderHistoric("hist");
     //configHeight();
@@ -368,7 +365,7 @@ function setAsBomb(x, y) {
 /*
 * PARA QUEM FOR DESENVOLVER A VERIFICAÇÃO DE POSIÇÃO VÁLIDA: substituir esse código*/
 function positionIsValid(posx, posy) {
-    return false;
+    return (posx>=0 && posx<matrix.maxx && posy>=0 && posy<matrix.maxy);
 }
 
 //KAREN POR FAZER
@@ -417,30 +414,27 @@ function generateRandomBetween(min, max){
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-//Emite menssagem informando que o jogador perdeu
-function looseMsg(){
-	document.getElementById('DERROTA').style.visibility= "visible";
+function restartGame(id){
+	//OBS. DESISTÊNCIA Obter dados da partida e gravar no histórico (CONSIDERAR FAZER)
+	get_data();
+	appendToHistoric();
+	//Atualizar a visualização do histórico em html
+	renderHistoric(id);
+	//Zerar variáveis utilizadas que possam interferir na próxima partida
+	resetGameVariables();
+
+	//Criar um novo jogo
+
 }
 
-//Emite menssagem informando que o jogador ganhou
-function winMsg(){
-	document.getElementById('VITORIA').style.visibility= "visible";
+function resetGameVariables(){
+	//Verificar se existem variáveis a serem resetadas ou visualizações a serem atualizadas antes da nova partida
+	playing = false;
+	playename = "*";
+	//Ex: jogador ativou o cheat, desativar para a próxima partida?
+	resetar variavel
+	chama a função 
+	//Se for complexo um refresh na página já faz esse trabalho
+	//document.forms["setupForm"]["name"].value="Seu Nome Aqui";
+	//document.forms["setupForm"]["number"].set..=" ";
 }
-
-//fecha menssagens de aviso
-function closepicture(id){
-	document.getElementById(id).style.visibility="hidden";
-	
-}
-function fillMatrixWithValues(){
-  for(var l=0; l<matrix.maxx; l++){
-    for(var c=0; c<matrix.maxx; c++)
-		if(!isBomb(l, c)){
-		   setValueAt(l, c, countMinesAroudCircle(matrix, l, c));
-		}
-	
-}
-
-
-
-
