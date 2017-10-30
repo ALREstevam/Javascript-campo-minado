@@ -453,6 +453,9 @@ function resetGameVariables(){
 	//chama a função ..cheat
 	//Se for complexo um refresh na página já faz esse trabalho
 	document.getElementById("name").value="";
+	document.getElementById("tblx").value="";
+	document.getElementById("tbly").value="";
+	document.getElementById("bombAmount").value="";
 	document.getElementById("gameBigTitle").innerHTML="Campo Minado | Partida de:";
 	//document.forms["setupForm"]["tblx"].setAttribute("value", ""); 
 	
