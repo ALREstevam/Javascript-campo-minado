@@ -455,12 +455,9 @@ function resetGameVariables(){
 	chama a função 
 	//Se for complexo um refresh na página já faz esse trabalho
 	//document.forms["setupForm"]["name"].value="Seu Nome Aqui";
-<<<<<<< HEAD
 	//document.forms["setupForm"]["number"].value=" "; //se .value não der certo substituir por .set....
 }
-=======
-	//document.forms["setupForm"]["number"].set..=" ";
-}
+
 
 //fecha menssagens de aviso
 function closepicture(id){
@@ -497,4 +494,4 @@ function millisToMinutesAndSeconds(millis) {
 
 
 
->>>>>>> refs/remotes/origin/master
+
