@@ -36,6 +36,8 @@ var playing = false;
 
 
 
+
+
 /*FUNÇÃO PRINCIPAL DO PROGRAMA: ATIVADA QUANDO UM ELEMENTO É CLICADO*/
 function elementClicked(id) {
 
@@ -56,6 +58,9 @@ function setup() {
 
         matrix = generateLogicalMatrix(mxMaxX, mxMaxY, mxBombs);
         console.log(matrix);
+        //colocar bombas
+        fillMatrixWithValues();
+
         document.getElementById('game').innerHTML = gameBoardHtml(matrix);
 
         playing = true;//Impedir que o jogo reinicie se clicar em iniciar jogo no meio de uma partida
@@ -66,6 +71,12 @@ function setup() {
 
 /*Função chamada assim que a página é carregada*/
 function pageLoad() {
+
+
+    testTime();
+	closepicture('VITORIA');
+	closepicture('DERROTA');
+
     appendToHistoric("Teste", 1, 2, 3, 4, "Perdeu");//Apenas para testar o histórico
     renderHistoric("hist");
     //configHeight();
@@ -303,7 +314,6 @@ function generateLogicalMatrix(maxX, maxY, bombs) {
         }
         mx.push(my);
     }
-
     var aMatrix = {
         bombNum: bombs,
         oppenedCellCount: 0,
@@ -371,6 +381,7 @@ function positionIsValid(posx, posy) {
 //KAREN POR FAZER
 function generateGameBoardHTML(x, y){
 	// Itera na matriz da memória e dependendo dos valores guardados gera um HTML correspondente
+	//OBS.: essa função está parcialmente implementada. Ver: gameBoardHtml()
 }
 
 //coloca aleatoriamente as bombas no tabuleiro
@@ -404,8 +415,15 @@ function getRandomXYtuple(maxX, maxY){
 	//Retorna uma lista no formato {x: 7, y:2} com x e y sendo randômicos
 }
 
-//KAREN POR FAZER
+//retorna a data atual para computar o tempo gasto na partida
 function getActualTime(){
+	var dateString = "";
+    var newDate = new Date();
+	dateString += (newDate.getMonth() + 1) + "/";
+	dateString += newDate.getDate() + "/";
+	dateString += newDate.getFullYear();
+
+	return dateString;
 	//Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
 }
 
@@ -425,6 +443,7 @@ function restartGame(id){
 
 	//Criar um novo jogo
 
+
 }
 
 function resetGameVariables(){
@@ -436,5 +455,46 @@ function resetGameVariables(){
 	chama a função 
 	//Se for complexo um refresh na página já faz esse trabalho
 	//document.forms["setupForm"]["name"].value="Seu Nome Aqui";
+<<<<<<< HEAD
 	//document.forms["setupForm"]["number"].value=" "; //se .value não der certo substituir por .set....
 }
+=======
+	//document.forms["setupForm"]["number"].set..=" ";
+}
+
+//fecha menssagens de aviso
+function closepicture(id){
+	document.getElementById(id).style.visibility="hidden";
+	
+}
+function fillMatrixWithValues() {
+    for (var l = 0; l < matrix.maxx; l++) {
+        for (var c = 0; c < matrix.maxx; c++)
+            if (!isBomb(l, c)) {
+                setValueAt(l, c, countMinesAroudCircle(matrix, l, c));
+            }
+    }
+}
+
+function testTime() {
+    var dt0 = new Date();
+    alert('t');
+    var dt1 = new Date();
+    console.log(dt1.valueOf());
+    var diff = dt1.valueOf() - dt0.valueOf();
+    console.log(millisToMinutesAndSeconds(diff));
+}
+
+function actTm() {
+    return new Date().valueOf();
+}
+
+function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
+
+
+
+>>>>>>> refs/remotes/origin/master

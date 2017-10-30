@@ -220,56 +220,51 @@ table.game tr td button:hover{
 }
 
 #DERROTA {
-  width: 700px;
-  height: 700px;
-  float: left;
-  background-image: url('fogo.png');
-  background-size: 700px ;
-  background-position: center;
-  background-repeat: no-repeat;
-  left: 450px; 
-  text-align:center;
-  line-height: 500px;
-  font-family:Comic Sans MS, Comic Sans;
-  font-size: 40px;
-  position: fixed; 
-  top: 40px; 
-  font-weight: bold;
-  color: #8B0000;
-
-  
+    visibility: hidden;
+    width: 100%;
+    height: 700px;
+    float: left;
+    background: url('fogo.png') center no-repeat rgba(51, 51, 51, 0.76);
+    background-size: 700px ;
+    text-align:center;
+    line-height: 500px;
+    font-family:"Comic Sans MS", Comic Sans, "sans-serif";
+    font-size: 40px;
+    position: fixed;
+    top: 0;
+    font-weight: bold;
+    color: #8B0000;
 }
+
 #VITORIA {
-  width: 700px;
-  height: 700px;
-  float: left;
-  background-image: url('FOGOS.png');
-  background-size: 700px ;
-  background-position: center;
-  background-repeat: no-repeat;
-  left: 450px; 
-  text-align:center;
-  line-height: 500px;
-  font-family:Comic Sans MS, Comic Sans;
-  font-size: 40px;
-  position: fixed; 
-  top: 40px; 
-  font-weight: bold;
-  color: #8B0000;
-  
+    visibility: hidden;
+    width: 100%;
+    height: 700px;
+    float: left;
+    background: url('FOGOS.png') center no-repeat rgba(51, 51, 51, 0.76);
+    background-size: 700px ;
+    text-align:center;
+    line-height: 500px;
+    font-family:"Comic Sans MS", Comic Sans, "sans-serif";
+    font-size: 40px;
+    position: fixed;
+    top: 0;
+    font-weight: bold;
+    color: whitesmoke;
+
 }
 
 #VITORIA button{
-	  position: fixed; 
-	  width: 50px;
-      height: 50px;
-	  margin-top: -200px;
-	
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    margin-top: -200px;
+
 }
 #DERROTA button{
-	  position: fixed; 
-	  width: 50px;
-      height: 50px;
-	  margin-top: -200px;
-	
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    margin-top: -200px;
+
 }
