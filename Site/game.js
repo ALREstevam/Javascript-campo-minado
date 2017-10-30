@@ -96,6 +96,80 @@ function pageLoad() {
     renderHistoric("hist");
 }
 
+
+/*Adicionar um elemento*/
+function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult) {
+
+    var histElem = {
+        player: player,
+        fieldDimensions: fieldx * fieldy,
+        fieldx: fieldx,
+        fieldy: fieldy,
+        timeTaken: timeTaken,
+        openedCells: openedCells,
+        matchResult: matchResult
+    };
+    var histsArray = new Array();
+
+    if(!localStorage.getItem('hist')){
+        localStorage.setItem('hist', JSON.stringify(histElem));
+    }
+    else{
+        histsArray = JSON.parse(localStorage.getItem('hist'));
+    }
+    histsArray.push(histElem);
+    localStorage.setItem('hist', JSON.stringify(histsArray));
+}
+
+/*Limpar o histórico
+* */
+function clearHistoric(id){
+    localStorage.removeItem('hist');
+    renderHistoric(id);
+    //configHeight();
+}
+
+/*Ler histórico como um array de objetos
+* */
+function readHistoric(){
+    if(!localStorage.getItem('hist')){
+        return null;
+    }else{
+        return JSON.parse(localStorage.getItem('hist'));
+    }
+}
+
+/*Converter histórico para HTML
+* */
+function historicToHtml(){
+    if(!localStorage.getItem('hist')){
+        return "<p>Histórico vazio</p>";
+    }else{
+        var hist = JSON.parse(localStorage.getItem('hist'));
+
+        var rsp = "";
+        for(var i = 0; i < hist.length; i++){
+            var elem = hist[i];
+            console.log(elem);
+            rsp += "<div class='histElement'>\n";
+            rsp += "<p><strong>Jogador: </strong>"+ elem.player +"</p>\n";
+            rsp += "<p><strong>Campo: </strong>"+ elem.fieldx +" x "+ elem.fieldy +"</p>\n";
+            rsp += "<p><strong>Tempo: </strong>"+ elem.timeTaken +"</p>\n";
+            rsp += "<p><strong>Células abertas: </strong>"+ elem.openedCells +"</p>\n";
+            rsp += "<p><strong>Resultado: </strong>"+ elem.matchResult +"</p>\n";
+            rsp += "</div>\n";
+            rsp += "<hr>\n";
+        }
+        return rsp;
+    }
+}
+
+/*Colocar o histórico em HTML dentro de algum elemento
+* */
+function renderHistoric(id){
+    document.getElementById(id).innerHTML = historicToHtml();
+}
+
 /*Gerar a posição dos vizinhos em cruz*/
 function getNeighborsPositionCross(cellx, celly) {
     return[{x: cellx+1,y:celly},{x:cellx-1 ,y:celly},{x:cellx ,y:celly+1}, {x:cellx ,y:celly-1}];
@@ -279,9 +353,61 @@ function looseMsg(){
 }
 
 //Emite menssagem informando que o jogador ganhou
-function winMsg(){
-	document.getElementById(htmlIdList.vitoria).style.visibility= "visible";
+function winMsg() {
+    document.getElementById(htmlIdList.vitoria).style.visibility = "visible";
 }
+
+//retorna a data atual para computar o tempo gasto na partida
+function getActualTime(){
+	var dateString = "";
+    var newDate = new Date();
+	dateString += (newDate.getMonth() + 1) + "/";
+	dateString += newDate.getDate() + "/";
+	dateString += newDate.getFullYear();
+
+	return dateString;
+	//Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
+}
+
+//Gera um número aleatório entre min e max
+function generateRandomBetween(min, max){
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function restartGame(){
+	console.log('RESTARTING GAME');
+	//OBS. DESISTÊNCIA Obter dados da partida e gravar no histórico (CONSIDERAR FAZER)
+	
+	//Zerar variáveis utilizadas que possam interferir na próxima partida
+	resetGameVariables();
+
+	//get_data();
+	//appendToHistoric();
+	//Atualizar a visualização do histórico em html
+	renderHistoric("hist");
+	
+	//Criar um novo jogo
+
+	return false;
+}
+
+function resetGameVariables(){
+	console.log('RESTARTING VARIABLES');
+	//Verificar se existem variáveis a serem resetadas ou visualizações a serem atualizadas antes da nova partida
+	playing = false;
+	playername = "*";
+	//Ex: jogador ativou o cheat, desativar para a próxima partida?
+	//resetar variavel
+	//chama a função ..cheat
+	//Se for complexo um refresh na página já faz esse trabalho
+	document.getElementById("name").value="";
+	document.getElementById("tblx").value="";
+	document.getElementById("tbly").value="";
+	document.getElementById("bombAmount").value="";
+	document.getElementById("gameBigTitle").innerHTML="Campo Minado | Partida de:";
+	//document.forms["setupForm"]["tblx"].setAttribute("value", ""); 
+}
+
 
 //fecha menssagens de aviso
 function closepicture(id){
@@ -297,43 +423,44 @@ function fillMatrixWithValues() {
         }
     }
 }
-
-function millisToMinutesAndSeconds(millis) {
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-}
-
-function printFastVisualization() {
-    var strRsp = '';
-    for(var row = 0; row < matrix.maxx; row++){
-        for(var column = 0; column < matrix.maxy; column++){
-            strRsp += (simplePadding( getValueAt(row, column) ) + ' ');
-        }
-        strRsp += '\n';
+    function millisToMinutesAndSeconds(millis) {
+        var minutes = Math.floor(millis / 60000);
+        var seconds = ((millis % 60000) / 1000).toFixed(0);
+        return (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
-    console.log(strRsp);
-}
 
-function cheat(){
-    cheating = !cheating;
-    var row, column;
+    function printFastVisualization() {
+        var strRsp = '';
+        for(var row = 0; row < matrix.maxx; row++){
+            for(var column = 0; column < matrix.maxy; column++){
+                strRsp += (simplePadding( getValueAt(row, column) ) + ' ');
+            }
+            strRsp += '\n';
+        }
+        console.log(strRsp);
+    }
 
-    if(playing){
-        if(cheating){
-            for(row = 0; row < matrix.maxx; row++){
-                for(column = 0; column < matrix.maxy; column++){
-                    openCellByCheat(row, column);
+    function cheat(){
+        cheating = !cheating;
+        var row, column;
+
+        if(playing){
+            if(cheating){
+                for(row = 0; row < matrix.maxx; row++){
+                    for(column = 0; column < matrix.maxy; column++){
+                        openCellByCheat(row, column);
+                    }
+                }
+            }else{
+                for(row = 0; row < matrix.maxx; row++){
+                    for(column = 0; column < matrix.maxy; column++){
+                        closeCellCheat(row, column);
+                    }
                 }
             }
-        }else{
-            for(row = 0; row < matrix.maxx; row++){
-                for(column = 0; column < matrix.maxy; column++){
-                    closeCellCheat(row, column);
-                }
-            }
+            renderBoard(matrix);
         }
-        renderBoard(matrix);
     }
-}
+
+
 
