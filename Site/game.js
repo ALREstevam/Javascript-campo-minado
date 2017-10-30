@@ -365,10 +365,7 @@ function setAsBomb(x, y) {
 /*
 * PARA QUEM FOR DESENVOLVER A VERIFICAÇÃO DE POSIÇÃO VÁLIDA: substituir esse código*/
 function positionIsValid(posx, posy) {
-    if(posx>=0 && posx<matrix.maxx && posy>=0 && posy<matrix.maxy)
-    	return true;
-    else
-    	return false;
+    return (posx>=0 && posx<matrix.maxx && posy>=0 && posy<matrix.maxy);
 }
 
 //KAREN POR FAZER
@@ -425,6 +422,7 @@ function restartGame(id){
 	renderHistoric(id);
 	//Zerar variáveis utilizadas que possam interferir na próxima partida
 	resetGameVariables();
+
 	//Criar um novo jogo
 
 }
@@ -434,8 +432,9 @@ function resetGameVariables(){
 	playing = false;
 	playename = "*";
 	//Ex: jogador ativou o cheat, desativar para a próxima partida?
+	resetar variavel
+	chama a função 
 	//Se for complexo um refresh na página já faz esse trabalho
-	document.forms["setupForm"]["name"].value="Seu Nome Aqui";
-	document.forms["setupForm"]["number"].value="1";
-
+	//document.forms["setupForm"]["name"].value="Seu Nome Aqui";
+	//document.forms["setupForm"]["number"].set..=" ";
 }
