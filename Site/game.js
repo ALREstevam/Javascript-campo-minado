@@ -48,7 +48,6 @@ function elementClicked(id) {
 
 /*FUNÇÃO A SER ACIONADA QUANDO O JOGADOR CLICAR EM INICIAR O JOGO*/
 function setup() {
-	
     if(!playing){
         playername = document.forms["setupForm"]["name"].value;
         var mxMaxX = document.forms["setupForm"]["tblx"].value;
@@ -59,6 +58,9 @@ function setup() {
 
         matrix = generateLogicalMatrix(mxMaxX, mxMaxY, mxBombs);
         console.log(matrix);
+        //colocar bombas
+        fillMatrixWithValues();
+
         document.getElementById('game').innerHTML = gameBoardHtml(matrix);
 
         playing = true;//Impedir que o jogo reinicie se clicar em iniciar jogo no meio de uma partida
