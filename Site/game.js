@@ -394,8 +394,14 @@ function restartGame(){
 function resetGameVariables(){
 	console.log('RESTARTING VARIABLES');
 	//Verificar se existem variáveis a serem resetadas ou visualizações a serem atualizadas antes da nova partida
-	playing = false;
-	playername = "*";
+    matrix = null;
+    playername = "*";
+    playing = false;
+    isFirst = true;
+    clickAble = true;
+    clockStart = null;
+    clockEnd = null;
+    cheating = false;
 	//Ex: jogador ativou o cheat, desativar para a próxima partida?
 	//resetar variavel
 	//chama a função ..cheat
@@ -405,6 +411,7 @@ function resetGameVariables(){
 	document.getElementById("tbly").value="";
 	document.getElementById("bombAmount").value="";
 	document.getElementById("gameBigTitle").innerHTML="Campo Minado | Partida de:";
+    document.getElementById('game').innerHTML = '<span class="gameName">&#128163; Campo minado &#128163;</span>';
 	//document.forms["setupForm"]["tblx"].setAttribute("value", ""); 
 }
 
