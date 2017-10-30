@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by andre on 13/10/2017.
  */
 "use strict";
@@ -301,6 +301,76 @@ function isBomb(x, y) {
 function setAsBomb(x, y) {
     matrix.mx[x][y].value = -1
 }
+
+////////Pedro/////
+
+
+function get_data() { //////////falta completar////////////
+    player
+    matrix.fieldx
+    matrix.fieldy
+    timeTaken
+    matrix.openedCells
+    matchResult
+    id
+
+}
+
+function looseGame() {
+
+    stopWatch();
+    var dados = get_data();
+    var identificador = dados.id;
+    var jogador = dados.player;
+    var campoX = dados.fieldx;
+    var campoY = dados.fieldy;
+    var tempo = dados.timeTaken;
+    var celulasAbertas = dados.openedCells;
+    var resultado = dados.matchResult;
+    appendToHistoric(jogador, campoX, campoY, tempo, celulasAbertas, resultado);
+    renderHistoric(identificador);
+    looseMsg();
+    resetGameVariables();
+   
+}
+
+function winGame() {
+    var date = get_data();
+    var identifier = date.id;
+    var a = date.player;
+    var b = date.fieldx;
+    var c = date.fieldy;
+    var d = date.timeTaken;
+    var e = date.openedCells;
+    var f = date.matchResult;
+    appendToHistoric(a, b, c, d, e, f);
+    renderHistoric(identifier);
+    stopWatch();
+    appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult)
+    renderHistoric(id);
+    winMsg();
+    resetGameVariables();
+ 
+}
+
+function swapCheatStatus(cheat) {
+	//Recebe o status atual do cheat e retorna o próximo (return !cheat)
+
+function setCheatButtonStyle(cheatOpt){
+	//Define o estilo do botão de cheat dependendo se está ativado ou não
+
+    function cheat() {
+        //Se estiver ativado, definir como desativado
+        //Se estiver desativado definir como ativado
+
+        //Dependendo do estado
+        //Iterar na matriz da memória alterando os valores para mostrar ou não todas as células
+        //atualizar a visualização da matriz em HTML
+    }
+
+
+
+
 
 
 
