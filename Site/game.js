@@ -11,6 +11,9 @@ var clickAble = true;
 var clockStart;
 var clockEnd;
 var cheating = false;
+var status = 0;
+var time = 0;
+var timerValue = "";
 
 var htmlIdList = {
     vitoria: 'vitoria',
@@ -36,11 +39,13 @@ function elementClicked(id) {
     if(isFirst){
         clockStart = getActualTime();
         isFirst = false;
+        startTimer();
         //console.log('Starting timer');
     }
 
     if(isBomb(elemPos.x, elemPos.y)) {
         playSound(files.loose);
+        stopTimer();
         openAllCells();
         looseMsg();
         clickAble = false;
@@ -52,6 +57,7 @@ function elementClicked(id) {
 
         if(matrix.openedCellCount - ((matrix.maxx * matrix.maxy) - matrix.bombNum) == 0){
             playSound(files.win);
+            stopTimer();
             openAllCells();
             winMsg();
             clickAble = false;
@@ -295,6 +301,7 @@ function gameBoardHtml(matrix) {
         rsp+="\t</tr>\n";
     }
     rsp += "</table>\n";
+
     //console.log('Matrix view updated.');
     return rsp;
 }
@@ -417,12 +424,15 @@ function resetGameVariables(){
     clockStart = null;
     clockEnd = null;
     cheating = false;
+    time = 0;
+    status = 0;
     //Ex: jogador ativou o cheat, desativar para a próxima partida?
     //resetar variavel
     //chama a função ..cheat
     //Se for complexo um refresh na página já faz esse trabalho
     //document.forms["setupForm"]["tblx"].setAttribute("value", "");
     document.getElementById('game').innerHTML = '<span class="gameName">&#128163; Campo minado &#128163;</span>';
+    document.getElementById('chrono').innerHTML = '<div id=\'time\' class=\'timeColors\'>Cronometro</br>00:00:00</div>'
 }
 
 function cleanTexts() {
@@ -490,6 +500,67 @@ function cheat(){
         }
         renderBoard(matrix);
     }
+}
+	
+
+
+function startTimer (){
+   status = 1;
+   //document.getElementById("btnStart").disabled = true;
+   timer();
+}
+
+function stopTimer(){
+   status = 0;
+   //document.getElementById("btnStart").disabled = false;
+}
+
+
+function timer(){
+   if(status == 1){
+      setTimeout(
+              function(){
+               time++;
+               var min = Math.floor(time/100/60);
+               var sec = Math.floor(time/100);
+               var mSec = time % 100;
+               if(min < 10){
+                   min = "0" + min;
+               }
+               if(sec >= 60){
+                   sec = sec % 60;
+               }
+               if(sec < 10){
+                   sec = "0" + sec;
+               }
+               document.getElementById('time').innerHTML = "Cronômetro<br>"+min + ":" + sec + ":" + mSec;
+               timerValue = min + ":" + sec + ":" + mSec;
+               timer();
+           }
+       , 10);
+   }
+}
+
+function relogio(){
+	var data = new Date();
+	var horas = data.getHours();
+	var minutos = data.getMinutes();
+	var segundos = data.getSeconds();
+	
+	if(horas <10){
+		horas = "0" + horas;
+	}
+	if(minutos <10){
+		minutos = "0" + minutos;
+	}
+	if(segundos <10){
+		segundos = "0" + segundos;
+	}
+	document.getElementById("relogio").innerHTML=horas+":"+minutos+":"+segundos;
+
+}
+function initrelogio(){
+	setInterval(relogio, 1000);
 }
 
 
