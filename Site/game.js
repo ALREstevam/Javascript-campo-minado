@@ -483,6 +483,7 @@ function cheat(){
     var row, column;
 
     if(playing){
+		stopTimer();
         if(cheating){
             for(row = 0; row < matrix.maxx; row++){
                 for(column = 0; column < matrix.maxy; column++){
@@ -490,6 +491,7 @@ function cheat(){
                 }
             }
         }else{
+			startTimer ();
             for(row = 0; row < matrix.maxx; row++){
                 for(column = 0; column < matrix.maxy; column++){
                     closeCellCheat(row, column);
