@@ -577,7 +577,7 @@ function get_data() { //////////falta completar////////////
 
 function looseGame() {
 
-    stopWatch();
+    stopTimer();
     var dados = get_data();
     var identificador = dados.id;
     var jogador = dados.player;
@@ -593,7 +593,9 @@ function looseGame() {
    
 }
 
-function winGame() {
+function winGame()
+{
+	stopTimer();
     var date = get_data();
     var identifier = date.id;
     var a = date.player;
@@ -604,7 +606,6 @@ function winGame() {
     var f = date.matchResult;
     appendToHistoric(a, b, c, d, e, f);
     renderHistoric(identifier);
-    stopWatch();
     appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult)
     renderHistoric(id);
     winMsg();
@@ -617,7 +618,6 @@ function winGame() {
 function setCheatButtonStyle(){
 	valor = !valor;
 	document.getElementById('cheatOption').innerHTML=(valor) ? "Sim" : "Não";
-	//document.getElementById('cheatOption').innerHTML="SIM";
 }
 
 
