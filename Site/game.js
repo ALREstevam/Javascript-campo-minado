@@ -14,6 +14,8 @@ var cheating = false;
 var status = 0;
 var time = 0;
 var timerValue = "";
+var matchResult = "desconhecido";
+
 
 var htmlIdList = {
     vitoria: 'vitoria',
@@ -37,31 +39,22 @@ function elementClicked(id) {
     //console.log(elemPos);
 
     if(isFirst){
-        clockStart = getActualTime();
         isFirst = false;
         startTimer();
         //console.log('Starting timer');
     }
 
     if(isBomb(elemPos.x, elemPos.y)) {
-        playSound(files.loose);
-        stopTimer();
-        openAllCells();
-        looseMsg();
+        looseGame();
         clickAble = false;
-        clockEnd = getActualTime();
     }
     else{
         recursivelyExplore(elemPos.x, elemPos.y);
         updateBigNameTitle(playername, matrix.openedCellCount, (matrix.maxx * matrix.maxy) - matrix.bombNum);
 
         if(matrix.openedCellCount - ((matrix.maxx * matrix.maxy) - matrix.bombNum) == 0){
-            playSound(files.win);
-            stopTimer();
-            openAllCells();
-            winMsg();
+            winGame();
             clickAble = false;
-            clockEnd = getActualTime();
         }
     }
     renderBoard(matrix);
@@ -78,7 +71,10 @@ function setup() {
 
         updateBigNameTitle(playername, 0, (mxMaxX * mxMaxY) - mxBombs);
 
+
         try{
+
+
             console.log('=== Generating logical matrix');
             matrix = generateLogicalMatrix(mxMaxX, mxMaxY, mxBombs);
 
@@ -104,6 +100,7 @@ function setup() {
 
 /*Função chamada assim que a página é carregada*/
 function pageLoad() {
+    document.getElementById('cheatOption').style.backgroundColor = '#cb4b37';
     closepicture('vitoria');
     closepicture('derrota');
     renderHistoric("hist");
@@ -482,6 +479,7 @@ function cheat(){
 
     playSound(files.click2);
     cheating = !cheating;
+    setCheatButtonStyle(cheating);
     var row, column;
 
     if(playing){
@@ -491,14 +489,12 @@ function cheat(){
                     openCellByCheat(row, column);
                 }
             }
-			setCheatButtonStyle();
         }else{
             for(row = 0; row < matrix.maxx; row++){
                 for(column = 0; column < matrix.maxy; column++){
                     closeCellCheat(row, column);
                 }
             }
-			setCheatButtonStyle();
         }
         renderBoard(matrix);
     }
@@ -565,7 +561,7 @@ function initrelogio(){
 	setInterval(relogio, 1000);
 }
 
-
+/*
 function get_data() { //////////falta completar////////////
     player
     matrix.fieldx
@@ -578,48 +574,38 @@ function get_data() { //////////falta completar////////////
 }
 
 function looseGame() {
-
+    matchResult = "perdeu";
+    playSound(files.loose);
     stopTimer();
-    var dados = get_data();
-    var identificador = dados.id;
-    var jogador = dados.player;
-    var campoX = dados.fieldx;
-    var campoY = dados.fieldy;
-    var tempo = dados.timeTaken;
-    var celulasAbertas = dados.openedCells;
-    var resultado = dados.matchResult;
-    appendToHistoric(jogador, campoX, campoY, tempo, celulasAbertas, resultado);
-    renderHistoric(identificador);
+    openAllCells();
+    looseMsg();
+    var data = getData();
+    appendToHistoric(data.playername, data.xmax, data.ymax, data.timeTaken, data.opened, data.gameResult);
+    renderHistoric(htmlIdList.historico);
     looseMsg();
     resetGameVariables();
-   
 }
 
 function winGame()
 {
-	stopTimer();
-    var date = get_data();
-    var identifier = date.id;
-    var a = date.player;
-    var b = date.fieldx;
-    var c = date.fieldy;
-    var d = date.timeTaken;
-    var e = date.openedCells;
-    var f = date.matchResult;
-    appendToHistoric(a, b, c, d, e, f);
-    renderHistoric(identifier);
-    appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult)
-    renderHistoric(id);
-    winMsg();
+    matchResult = "venceu";
+    playSound(files.win);
+    stopTimer();
+    openAllCells();
+    looseMsg();
+    var data = getData();
+    appendToHistoric(data.playername, data.xmax, data.ymax, data.timeTaken, data.opened, data.gameResult);
+    renderHistoric(htmlIdList.historico);
+    looseMsg();
     resetGameVariables();
- 
 }
 
-	var valor = true;
+*/
 	
-function setCheatButtonStyle(){
-	valor = !valor;
-	document.getElementById('cheatOption').innerHTML=(valor) ? "Sim" : "Não";
+function setCheatButtonStyle(cheatValue){
+	document.getElementById('cheatOption').innerHTML=(cheatValue) ? "Sim" : "Não";
+    document.getElementById('cheatOption').style.backgroundColor = (cheatValue) ? "#3ada76" : "#cb4b37";
+
 }
 
 
