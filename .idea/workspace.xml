@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="30ecdb6b-a142-414a-b37c-b5315571be22" name="Default" comment="" />
+    <list default="true" id="30ecdb6b-a142-414a-b37c-b5315571be22" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="Javascript-campo-minado.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -25,7 +27,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Site/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
+            <state relative-caret-position="-238">
               <caret line="40" column="81" selection-start-line="40" selection-start-column="81" selection-end-line="40" selection-end-column="81" />
               <folding />
             </state>
@@ -261,12 +263,12 @@
       <workItem from="1509383932573" duration="5928000" />
       <workItem from="1509397515132" duration="5659000" />
       <workItem from="1509412017098" duration="3199000" />
-      <workItem from="1509441761912" duration="733000" />
+      <workItem from="1509441761912" duration="762000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68856000" />
+    <option name="totallyTimeSpent" value="68885000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -722,7 +724,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Site/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="-238">
           <caret line="40" column="81" selection-start-line="40" selection-start-column="81" selection-end-line="40" selection-end-column="81" />
           <folding />
         </state>
