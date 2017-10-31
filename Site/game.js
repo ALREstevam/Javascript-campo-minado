@@ -400,8 +400,8 @@ function restartGame(){
     //Zerar variáveis utilizadas que possam interferir na próxima partida
     resetGameVariables();
 
-    //get_data();
-    //appendToHistoric();
+    var dataGame = getData();
+    appendToHistoric(dataGame.player, dataGame.xmax, dataGame.ymax, dataGame.timeTaken, dataGame.opened, dataGame.gameResult);
     //Atualizar a visualização do histórico em html
     renderHistoric("hist");
 
@@ -561,18 +561,19 @@ function initrelogio(){
 	setInterval(relogio, 1000);
 }
 
-/*
-function get_data() { //////////falta completar////////////
-    player
-    matrix.fieldx
-    matrix.fieldy
-    timeTaken
-    matrix.openedCells
-    matchResult
-    id
 
+function getData() { 
+    return {
+    	playername: document.forms["setupForm"]["name"].value,
+    	xmax: document.forms["setupForm"]["tblx"].value,
+		ymax: document.forms["setupForm"]["tbly"].value,
+		xBombs: document.forms["setupForm"]["bombAmount"].value,
+		timeTaken: timerValue,
+		opened: matrix.openedCellCount,
+		gameResult: matchResult
+    }
 }
-
+ 
 function looseGame() {
     matchResult = "perdeu";
     playSound(files.loose);
@@ -600,7 +601,7 @@ function winGame()
     resetGameVariables();
 }
 
-*/
+
 	
 function setCheatButtonStyle(cheatValue){
 	document.getElementById('cheatOption').innerHTML=(cheatValue) ? "Sim" : "Não";
