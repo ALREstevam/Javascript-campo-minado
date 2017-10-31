@@ -531,7 +531,7 @@ function timer(){
                if(sec < 10){
                    sec = "0" + sec;
                }
-               document.getElementById('time').innerHTML = "Cronômetro<br>"+min + ":" + sec + ":" + mSec;
+               document.getElementById('time').innerHTML = min + ":" + sec + ":" + mSec;
                timerValue = min + ":" + sec + ":" + mSec;
                timer();
            }
