@@ -491,12 +491,14 @@ function cheat(){
                     openCellByCheat(row, column);
                 }
             }
+			setCheatButtonStyle();
         }else{
             for(row = 0; row < matrix.maxx; row++){
                 for(column = 0; column < matrix.maxy; column++){
                     closeCellCheat(row, column);
                 }
             }
+			setCheatButtonStyle();
         }
         renderBoard(matrix);
     }
@@ -563,5 +565,61 @@ function initrelogio(){
 	setInterval(relogio, 1000);
 }
 
+
+function get_data() { //////////falta completar////////////
+    player
+    matrix.fieldx
+    matrix.fieldy
+    timeTaken
+    matrix.openedCells
+    matchResult
+    id
+
+}
+
+function looseGame() {
+
+    stopTimer();
+    var dados = get_data();
+    var identificador = dados.id;
+    var jogador = dados.player;
+    var campoX = dados.fieldx;
+    var campoY = dados.fieldy;
+    var tempo = dados.timeTaken;
+    var celulasAbertas = dados.openedCells;
+    var resultado = dados.matchResult;
+    appendToHistoric(jogador, campoX, campoY, tempo, celulasAbertas, resultado);
+    renderHistoric(identificador);
+    looseMsg();
+    resetGameVariables();
+   
+}
+
+function winGame()
+{
+	stopTimer();
+    var date = get_data();
+    var identifier = date.id;
+    var a = date.player;
+    var b = date.fieldx;
+    var c = date.fieldy;
+    var d = date.timeTaken;
+    var e = date.openedCells;
+    var f = date.matchResult;
+    appendToHistoric(a, b, c, d, e, f);
+    renderHistoric(identifier);
+    appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult)
+    renderHistoric(id);
+    winMsg();
+    resetGameVariables();
+ 
+}
+
+	var valor = true;
+	
+function setCheatButtonStyle(){
+	valor = !valor;
+	document.getElementById('cheatOption').innerHTML=(valor) ? "Sim" : "Não";
+}
 
 
