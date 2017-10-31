@@ -282,3 +282,28 @@ table.game tr td button:hover{
     margin-top: -200px;
 
 }
+#time{
+   width: 250px;
+   height:100px;
+   font-size: 55px;
+   margin-top:5%;
+   text-align: center;
+   font-weight: lighter;
+   background:#C0C0C0;
+   font-family:Comic Sans MS, Comic Sans;
+  font-size: 30px;
+  color:#008000;
+  float: right;
+}
+
+#buttons{
+   width: 225px;
+    float: right;
+	   margin-top:7%;
+
+
+
+}
+
+
+
