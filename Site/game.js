@@ -491,12 +491,14 @@ function cheat(){
                     openCellByCheat(row, column);
                 }
             }
+			setCheatButtonStyle();
         }else{
             for(row = 0; row < matrix.maxx; row++){
                 for(column = 0; column < matrix.maxy; column++){
                     closeCellCheat(row, column);
                 }
             }
+			setCheatButtonStyle();
         }
         renderBoard(matrix);
     }
