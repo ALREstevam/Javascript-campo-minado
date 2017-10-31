@@ -14,8 +14,8 @@ function recoveryPostion(id) {
     return JSON.parse(document.getElementById(id).getAttribute("value"));
 }
 
-function updateBigNameTitle(playename) {
-    document.getElementById(htmlIdList.title).innerHTML = "Campo Minado | Partida de: " + playename;
+function updateBigNameTitle(playename, opened, from) {
+    document.getElementById(htmlIdList.title).innerHTML = "Campo Minado | Partida de: " + playename + " | " + opened + '/' + from;
 }
 
 //Consulta uma posição na matriz e retorna se ela está marcada como aberta

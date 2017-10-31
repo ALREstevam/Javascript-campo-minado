@@ -1,4 +1,4 @@
-body{
+body {
     font-family: "Roboto", "Calibri Light", sans-serif;
     padding: 0;
     margin: -20px 0 0 0;
@@ -12,7 +12,7 @@ table {
     border-collapse: collapse;
 }
 
-.button{
+.button {
     padding: 10px;
     margin: 10px;
     border: none;
@@ -25,46 +25,45 @@ table {
     width: 90%;
 }
 
-
-.gameName{
+.gameName {
     font-size: 30pt;
     width: 100%;
     text-align: center;
     display: block;
 }
 
-.button:hover{
+.button:hover {
     background-color: rgba(17, 17, 17, 0.60);
 }
 
-.redButton{
+.redButton {
     background-color: #cb4b37;
     transition: background 0.5s;
 }
 
-.redButton:hover{
+.redButton:hover {
     background-color: #b24632;
 }
 
-.greenButton{
+.greenButton {
     background-color: #3ada76;
     transition: background 0.5s;
 }
 
-.greenButton:hover{
+.greenButton:hover {
     background-color: #3bb95c;
 }
 
-.blueButton{
+.blueButton {
     background-color: #177bbb;
     transition: background 0.5s;
 }
 
-.blueButton:hover{
+.blueButton:hover {
     background-color: #1667a1;
 }
 
-input{
+input {
     display: block;
     border: #545856 2px solid;
     padding: 3px;
@@ -72,35 +71,35 @@ input{
     transition: border 1s;
 }
 
-input:valid{
+input:valid {
     border: rgba(10, 178, 50, 0.55) 2px solid;
 }
 
-input:invalid{
+input:invalid {
     border: rgba(178, 19, 15, 0.55) 2px solid;
 }
 
-.inputFill{
+.inputFill {
     width: 90%;
 }
 
-.configs{
+.configs {
     max-width: 15%;
     float: left;
     display: flex;
     flex-direction: column;
 }
 
-.configs:first-line{
+.configs:first-line {
     border: solid 1px #1667a1;
 }
 
-.configsInside{
+.configsInside {
     padding: 10px;
     background-color: inherit;
 }
 
-#gameArea{
+#gameArea {
     background-color: inherit;
     margin: 0;
     float: left;
@@ -108,19 +107,19 @@ input:invalid{
     padding: 10px 2% 10px 2%;
 }
 
-#gameArea .game{
+#gameArea .game {
     background-color: rgba(23, 159, 241, 0.41);
     border: solid rgba(22, 103, 161, 1) 3px;
     padding: 10px;
     overflow: auto;
 }
 
-table.game{
+table.game {
     display: table;
     margin: 0 auto;
 }
 
-table.game tr td{
+table.game tr td {
     width: 20px;
     height: 20px;
     max-width: 20px;
@@ -130,13 +129,12 @@ table.game tr td{
     display: inline-block;
 }
 
-table.game tbody{
+table.game tbody {
     margin: 0;
     padding: 0;
 }
 
-
-table.game tr td button{
+table.game tr td button {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -144,16 +142,16 @@ table.game tr td button{
     cursor: pointer;
 }
 
-table.game tr td button:hover{
+table.game tr td button:hover {
     background-color: #179fe9;
 }
 
-.histElement{
+.histElement {
     font-size: 10pt;
     line-height: 15%;
 }
 
-#gameBigTitle{
+#gameBigTitle {
     width: 96.9%;
     background-color: #292c2c;
     padding: 20px;
@@ -161,148 +159,158 @@ table.game tr td button:hover{
     color: whitesmoke;
 }
 
-.openedCell{
+.openedCell {
     background-color: #6cc4fd;
     border: solid 1px #1c9bec;
     font-weight: bolder;
     font-size: 12pt;
 }
 
-.closedCell{
+.closedCell {
     background-color: #177bbb;
     border: solid 1px #1667a1;
 }
 
-.cellOpenByCheat{
+.cellOpenByCheat {
     background-color: #fdae97;
 }
 
-
-.one:after{
+.one:after {
     font-weight: bold;
     color: #2c8c44;
     content: "1";
 }
 
-.two:after{
+.two:after {
     font-weight: bold;
     color: #2a36bb;
     content: "2";
 }
 
-.three:after{
+.three:after {
     font-weight: bold;
     color: #b24632;
     content: "3";
 }
 
-.four:after{
+.four:after {
     font-weight: bold;
     color: #a2412c;
     content: "4";
 }
 
-.five:after{
+.five:after {
     font-weight: bold;
     color: #b23421;
     content: "5";
 }
 
-.six:after{
+.six:after {
     font-weight: bold;
     color: #b22a1c;
     content: "6";
 }
 
-.seven:after{
+.seven:after {
     color: #d62e1c;
     content: "7";
 }
 
-.eight:after{
+.eight:after {
     font-weight: bold;
     color: #fa2915;
     content: "8";
 }
 
-.none{
+.none {
 
 }
 
-.bomb:after{
+.bomb:after {
     content: "\01F4A3";
     font-size: 12pt;
 }
 
-#derrota {
+.msg {
     visibility: hidden;
     width: 100%;
     height: 700px;
     float: left;
-    background: url('fire.png') center no-repeat rgba(51, 51, 51, 0.76);
-    background-size: 700px ;
-    text-align:center;
+    background-size: 700px;
+    text-align: center;
     line-height: 500px;
-    font-family:"Comic Sans MS", Comic Sans, "sans-serif";
+    font-family: "Comic Sans MS", Comic Sans, "sans-serif";
     font-size: 40px;
     position: fixed;
     top: 0;
+    background: rgba(51, 51, 51, 0.76);
+}
+
+.derrota {
+    background: url('fire.png') center no-repeat rgba(51, 51, 51, 0.76);
+    background-size: contain;
     font-weight: bold;
     color: #8B0000;
 }
 
-#vitoria {
-    visibility: hidden;
-    width: 100%;
-    height: 700px;
-    float: left;
+.vitoria {
     background: url('fireworks.png') center no-repeat rgba(51, 51, 51, 0.76);
-    background-size: 700px ;
-    text-align:center;
-    line-height: 500px;
-    font-family:"Comic Sans MS", Comic Sans, "sans-serif";
-    font-size: 40px;
-    position: fixed;
-    top: 0;
+    background-size: contain;
     font-weight: bold;
     color: whitesmoke;
 }
 
-#vitoria button{
-    position: fixed;
+.msg button {
+
     width: 50px;
     height: 50px;
-    margin-top: -200px;
 
 }
-#derrota button{
+
+.msg .buttons {
+    margin-top: -200px;
     position: fixed;
-    width: 50px;
-    height: 50px;
-    margin-top: -200px;
-
-}
-#time{
-   width: 250px;
-   height:100px;
-   font-size: 55px;
-   margin-top:5%;
-   text-align: center;
-   font-weight: lighter;
-   background:#C0C0C0;
-   font-family:Comic Sans MS, Comic Sans;
-  font-size: 30px;
-  color:#008000;
-  float: right;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-#buttons{
-   width: 225px;
+.hide {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+
+#time {
+    width: 100%;
+    height: 100px;
+    margin-top: 5%;
+    text-align: center;
+    font-weight: lighter;
+    font-size: 30px;
     float: right;
-	   margin-top:7%;
+}
 
+.timeColors{
 
+}
 
+.chrono{
+    background-color: rgba(23, 159, 241, 0.41);
+    border: solid rgba(22, 103, 161, 1) 3px;
+    float: left;
+    width: 95%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0 2% 5px 2%;
+}
+
+#buttons {
+    width: 225px;
+    float: right;
+    margin-top: 7%;
 }
 
 
