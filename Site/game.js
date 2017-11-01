@@ -505,20 +505,6 @@ function cheat() {
     setCheatButtonStyle(cheating);
     var row, column;
 
-<<<<<<< HEAD
-    if(playing){
-		stopTimer();
-        if(cheating){
-            for(row = 0; row < matrix.maxx; row++){
-                for(column = 0; column < matrix.maxy; column++){
-                    openCellByCheat(row, column);
-                }
-            }
-        }else{
-			startTimer ();
-            for(row = 0; row < matrix.maxx; row++){
-                for(column = 0; column < matrix.maxy; column++){
-=======
     if (playing) {
         if (cheating) {
             for (row = 0; row < matrix.maxx; row++) {
@@ -529,7 +515,6 @@ function cheat() {
         } else {
             for (row = 0; row < matrix.maxx; row++) {
                 for (column = 0; column < matrix.maxy; column++) {
->>>>>>> rf
                     closeCellCheat(row, column);
                 }
             }
