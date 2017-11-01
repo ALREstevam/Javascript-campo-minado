@@ -245,7 +245,7 @@ table.game tr td button:hover {
 
 .bomb:after {
     content: "\01F4A3";
-    font-size: 12pt;
+    font-size: 10pt;
     background-color: #ff6e68;
 }
 

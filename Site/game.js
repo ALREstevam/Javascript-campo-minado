@@ -13,7 +13,7 @@ var clockEnd;
 var cheating = false;
 var status = 0;
 var time = 0;
-var timerValue = "";
+var timerValue = "00:00:00";
 var matchResult = false;
 
 
@@ -72,12 +72,16 @@ function setup() {
         var mxMaxY = document.forms["setupForm"]["tbly"].value;
         var mxBombs = document.forms["setupForm"]["bombAmount"].value;
 
+        /*if(mxMaxX > 65 || mxMaxY > 65){
+            if(!confirm("Você escolheu uma quantidade muito grande de células, isso pode causar lentidão e desconfiguração da interface.\nDeseja continuar?")){
+                return;
+            }
+        }*/
+
+
+
         updateBigNameTitle(playername, 0, (mxMaxX * mxMaxY) - mxBombs);
-
-
         try{
-
-
             console.log('=== Generating logical matrix');
             matrix = generateLogicalMatrix(mxMaxX, mxMaxY, mxBombs);
 
