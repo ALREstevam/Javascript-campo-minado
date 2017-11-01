@@ -13,8 +13,8 @@ var clockEnd;
 var cheating = false;
 var status = 0;
 var time = 0;
-var timerValue = "";
-var matchResult = "desconhecido";
+var timerValue = "00:00:00";
+var matchResult = false;
 
 
 var htmlIdList = {
@@ -22,7 +22,8 @@ var htmlIdList = {
     derrota: 'derrota',
     historico: 'hist',
     game: 'game',
-    title: 'gameBigTitle'
+    title: 'gameBigTitle',
+    time: 'time'
 };
 
 
@@ -47,6 +48,7 @@ function elementClicked(id) {
     if(isBomb(elemPos.x, elemPos.y)) {
         looseGame();
         clickAble = false;
+        return;
     }
     else{
         recursivelyExplore(elemPos.x, elemPos.y);
@@ -55,6 +57,7 @@ function elementClicked(id) {
         if(matrix.openedCellCount - ((matrix.maxx * matrix.maxy) - matrix.bombNum) == 0){
             winGame();
             clickAble = false;
+            return;
         }
     }
     renderBoard(matrix);
@@ -69,12 +72,16 @@ function setup() {
         var mxMaxY = document.forms["setupForm"]["tbly"].value;
         var mxBombs = document.forms["setupForm"]["bombAmount"].value;
 
+        /*if(mxMaxX > 65 || mxMaxY > 65){
+            if(!confirm("Você escolheu uma quantidade muito grande de células, isso pode causar lentidão e desconfiguração da interface.\nDeseja continuar?")){
+                return;
+            }
+        }*/
+
+
+
         updateBigNameTitle(playername, 0, (mxMaxX * mxMaxY) - mxBombs);
-
-
         try{
-
-
             console.log('=== Generating logical matrix');
             matrix = generateLogicalMatrix(mxMaxX, mxMaxY, mxBombs);
 
@@ -104,81 +111,6 @@ function pageLoad() {
     closepicture('vitoria');
     closepicture('derrota');
     renderHistoric("hist");
-}
-
-
-/*Adicionar um elemento*/
-function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult) {
-
-    var histElem = {
-        player: player,
-        fieldDimensions: fieldx * fieldy,
-        fieldx: fieldx,
-        fieldy: fieldy,
-        timeTaken: timeTaken,
-        openedCells: openedCells,
-        matchResult: matchResult
-    };
-    var histsArray = new Array();
-
-    if(!localStorage.getItem('hist')){
-        localStorage.setItem('hist', JSON.stringify(histElem));
-    }
-    else{
-        histsArray = JSON.parse(localStorage.getItem('hist'));
-    }
-    histsArray.push(histElem);
-    localStorage.setItem('hist', JSON.stringify(histsArray));
-}
-
-/*Limpar o histórico
- * */
-function clearHistoric(id){
-    playSound(files.click2);
-    localStorage.removeItem('hist');
-    renderHistoric(id);
-    //configHeight();
-}
-
-/*Ler histórico como um array de objetos
- * */
-function readHistoric(){
-    if(!localStorage.getItem('hist')){
-        return null;
-    }else{
-        return JSON.parse(localStorage.getItem('hist'));
-    }
-}
-
-/*Converter histórico para HTML
- * */
-function historicToHtml(){
-    if(!localStorage.getItem('hist')){
-        return "<p>Histórico vazio</p>";
-    }else{
-        var hist = JSON.parse(localStorage.getItem('hist'));
-
-        var rsp = "";
-        for(var i = 0; i < hist.length; i++){
-            var elem = hist[i];
-            console.log(elem);
-            rsp += "<div class='histElement'>\n";
-            rsp += "<p><strong>Jogador: </strong>"+ elem.player +"</p>\n";
-            rsp += "<p><strong>Campo: </strong>"+ elem.fieldx +" x "+ elem.fieldy +"</p>\n";
-            rsp += "<p><strong>Tempo: </strong>"+ elem.timeTaken +"</p>\n";
-            rsp += "<p><strong>Células abertas: </strong>"+ elem.openedCells +"</p>\n";
-            rsp += "<p><strong>Resultado: </strong>"+ elem.matchResult +"</p>\n";
-            rsp += "</div>\n";
-            rsp += "<hr>\n";
-        }
-        return rsp;
-    }
-}
-
-/*Colocar o histórico em HTML dentro de algum elemento
- * */
-function renderHistoric(id){
-    document.getElementById(id).innerHTML = historicToHtml();
 }
 
 /*Gerar a posição dos vizinhos em cruz*/
@@ -387,27 +319,12 @@ function getActualTime(){
     //Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
 }
 
-//Gera um número aleatório entre min e max
-function generateRandomBetween(min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function restartGame(){
     playSound(files.click2);
     console.log('RESTARTING GAME');
-    //OBS. DESISTÊNCIA Obter dados da partida e gravar no histórico (CONSIDERAR FAZER)
-
-    //Zerar variáveis utilizadas que possam interferir na próxima partida
     resetGameVariables();
-
-    var dataGame = getData();
-    appendToHistoric(dataGame.player, dataGame.xmax, dataGame.ymax, dataGame.timeTaken, dataGame.opened, dataGame.gameResult);
-    //Atualizar a visualização do histórico em html
     renderHistoric("hist");
-
-    //Criar um novo jogo
-
-    return false;
+    playing = false;
 }
 
 function resetGameVariables(){
@@ -415,21 +332,20 @@ function resetGameVariables(){
     //Verificar se existem variáveis a serem resetadas ou visualizações a serem atualizadas antes da nova partida
     matrix = null;
     playername = "*";
-    playing = false;
     isFirst = true;
     clickAble = true;
     clockStart = null;
     clockEnd = null;
     cheating = false;
+    setCheatButtonStyle(false);
     time = 0;
     status = 0;
-    //Ex: jogador ativou o cheat, desativar para a próxima partida?
-    //resetar variavel
-    //chama a função ..cheat
-    //Se for complexo um refresh na página já faz esse trabalho
-    //document.forms["setupForm"]["tblx"].setAttribute("value", "");
-    document.getElementById('game').innerHTML = '<span class="gameName">&#128163; Campo minado &#128163;</span>';
-    document.getElementById('chrono').innerHTML = '<div id=\'time\' class=\'timeColors\'>Cronometro</br>00:00:00</div>'
+}
+
+function resetStyle() {
+    document.getElementById(htmlIdList.game).innerHTML = '<span class="gameName">&#128163; Campo minado &#128163;</span>';
+    document.getElementById(htmlIdList.time).innerHTML = '00:00:00';
+    document.getElementById(htmlIdList.title).innerHTML = 'Campo Minado';
 }
 
 function cleanTexts() {
@@ -506,13 +422,11 @@ function cheat(){
 
 function startTimer (){
    status = 1;
-   //document.getElementById("btnStart").disabled = true;
    timer();
 }
 
 function stopTimer(){
    status = 0;
-   //document.getElementById("btnStart").disabled = false;
 }
 
 
@@ -567,50 +481,177 @@ function initrelogio(){
 
 function getData() { 
     return {
-    	playername: document.forms["setupForm"]["name"].value,
-    	xmax: document.forms["setupForm"]["tblx"].value,
-		ymax: document.forms["setupForm"]["tbly"].value,
-		xBombs: document.forms["setupForm"]["bombAmount"].value,
+    	playername: playername,
+    	xmax: matrix.maxx,
+		ymax: matrix.maxy,
+		xBombs: matrix.bombNum,
 		timeTaken: timerValue,
 		opened: matrix.openedCellCount,
-		gameResult: matchResult
+		gameResult: matchResult,
+        currentDateStr: getActualDateStr()
     }
 }
  
-function looseGame() {
-    matchResult = "perdeu";
-    playSound(files.loose);
-    stopTimer();
-    openAllCells();
-    looseMsg();
-    var data = getData();
-    appendToHistoric(data.playername, data.xmax, data.ymax, data.timeTaken, data.opened, data.gameResult);
-    renderHistoric(htmlIdList.historico);
-    looseMsg();
-    resetGameVariables();
+function looseGame()
+{
+    endGame(false);
 }
 
 function winGame()
 {
-    matchResult = "venceu";
-    playSound(files.win);
+    endGame(true);
+}
+
+function endGame(winOrLoose) {
+    var sound = (winOrLoose)? files.win : files.loose2;
+    
+    playSound(sound);//Tocando som
+    matchResult = winOrLoose;//Definindo o resultado do jogo (true = ganhou, false = perdeu)
     stopTimer();
     openAllCells();
-    looseMsg();
+    renderBoard(matrix);
+    
+    if(winOrLoose){
+        winMsg()
+    }else{
+        looseMsg();
+    }
+    
     var data = getData();
-    appendToHistoric(data.playername, data.xmax, data.ymax, data.timeTaken, data.opened, data.gameResult);
+    appendToHistoric(data.playername, data.xmax, data.ymax, data.timeTaken, data.opened, data.gameResult, data.currentDateStr);
     renderHistoric(htmlIdList.historico);
-    looseMsg();
     resetGameVariables();
 }
 
-
-	
 function setCheatButtonStyle(cheatValue){
 	document.getElementById('cheatOption').innerHTML=(cheatValue) ? "Sim" : "Não";
     document.getElementById('cheatOption').style.backgroundColor = (cheatValue) ? "#3ada76" : "#cb4b37";
-
 }
+
+/*=================================================== HISTORIC ================================================================*/
+
+/**
+ * Created by andre on 30/10/2017.
+ */
+
+
+/*Adicionar um elemento*/
+function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult, date)
+{
+    var histElem =
+    {
+        date: date,
+        player: player,
+        fieldDimensions: fieldx * fieldy,
+        fieldx: fieldx,
+        fieldy: fieldy,
+        timeTaken: timeTaken,
+        openedCells: openedCells,
+        matchResult: matchResult
+    };
+    var histsArray = new Array();
+    if(!localStorage.getItem('hist'))
+    {
+        localStorage.setItem('hist', JSON.stringify(histElem));
+    }
+    else
+    {
+        histsArray = JSON.parse(localStorage.getItem('hist'));
+    }
+    histsArray.push(histElem);
+    localStorage.setItem('hist', JSON.stringify(histsArray));
+}
+
+/*Limpar o histórico
+ * */
+function clearHistoric(id)
+{
+    localStorage.removeItem('hist');
+    renderHistoric(id);
+    //configHeight();
+}
+
+/*Ler histórico como um array de objetos
+ * */
+function readHistoric()
+{
+    if(!localStorage.getItem('hist'))
+    {
+        return null;
+    }
+    else
+    {
+        return JSON.parse(localStorage.getItem('hist'));
+    }
+}
+
+
+/*Converter histórico para HTML
+ * */
+function historicToHtml()
+{
+    if(!localStorage.getItem('hist'))
+    {
+        return "<p>Histórico vazio</p>";
+    }
+    else
+    {
+        var hist = JSON.parse(localStorage.getItem('hist'));
+        var rsp = "";
+        for(var i = hist.length -1; i >= 0 ; i--){
+            var elem = hist[i];
+            var compl = (elem.matchResult)?'histGreen':'histRed';
+            console.log(elem);
+            rsp += "<div class='histElement "+compl+"'>\n";
+            rsp += "<p>\n";
+            rsp += "<strong>"+ elem.date +"</strong><br>\n";
+            rsp += "<strong>Jogador: </strong>"+ elem.player +"<br>\n";
+            rsp += "<strong>Campo: </strong>"+ elem.fieldx +" x "+ elem.fieldy +"<br>\n";
+            rsp += "<strong>Tempo: </strong>"+ elem.timeTaken +"<br>\n";
+            rsp += "<strong>Células abertas: </strong>"+ elem.openedCells +"<br>\n";
+            rsp += "<strong>Resultado: </strong>"+ matchResultStr(elem.matchResult) +"<br>\n";
+            rsp += "</p>\n";
+            rsp += "</div>\n";
+            //rsp += "<hr>\n";
+        }
+        return rsp;
+    }
+}
+
+/*Colocar o histórico em HTML dentro de algum elemento
+ * */
+function renderHistoric(id)
+{
+    document.getElementById(id).innerHTML = historicToHtml();
+}
+
+function matchResultStr(res) {
+    return (res)?'Venceu':'Perdeu';
+}
+
+/*=================================================== AUDIO ================================================================*/
+
+/**
+ * Created by andre on 30/10/2017.
+ */
+
+var files =
+{
+    loose: 'bomb-contdown.mp3',
+    win: 'win.mp3',
+    start: 'game_start.mp3',
+    click: 'click_0.mp3',
+    click2: 'click_1.mp3',
+    loose2: 'explosion_n_song.mp3'
+};
+
+function playSound(filename)
+{
+    var audio = new Audio(filename);
+    audio.play();
+}
+
+/*=================================================== UTILS ================================================================*/
 
 /**
  * Created by andre on 30/10/2017.
@@ -742,22 +783,3 @@ function simplePadding(num)
     }
 }
 
-/**
- * Created by andre on 30/10/2017.
- */
-
-var files =
-{
-    loose: 'bomb-contdown.mp3',
-    win: 'win.mp3',
-    start: 'game_start.mp3',
-    click: 'click_0.mp3',
-    click2: 'click_1.mp3',
-    loose2: 'explosion_n_song.mp3'
-};
-
-function playSound(filename)
-{
-    var audio = new Audio(filename);
-    audio.play();
-}
