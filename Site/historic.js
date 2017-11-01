@@ -4,7 +4,7 @@
 
 
 /*Adicionar um elemento*/
-function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult, date)
+/*function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult, date)
 {
     var histElem =
     {
@@ -29,18 +29,20 @@ function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, match
     histsArray.push(histElem);
     localStorage.setItem('hist', JSON.stringify(histsArray));
 }
-
+*/
 /*Limpar o histórico
  * */
+/*
 function clearHistoric(id)
 {
     localStorage.removeItem('hist');
     renderHistoric(id);
     //configHeight();
 }
-
+*/
 /*Ler histórico como um array de objetos
  * */
+/*
 function readHistoric()
 {
     if(!localStorage.getItem('hist'))
@@ -53,9 +55,10 @@ function readHistoric()
     }
 }
 
-
+*/
 /*Converter histórico para HTML
  * */
+/*
 function historicToHtml()
 {
     if(!localStorage.getItem('hist'))
@@ -85,9 +88,10 @@ function historicToHtml()
         return rsp;
     }
 }
-
+*/
 /*Colocar o histórico em HTML dentro de algum elemento
  * */
+/*
 function renderHistoric(id)
 {
     document.getElementById(id).innerHTML = historicToHtml();
@@ -96,3 +100,4 @@ function renderHistoric(id)
 function matchResultStr(res) {
     return (res)?'Venceu':'Perdeu';
 }
+*/

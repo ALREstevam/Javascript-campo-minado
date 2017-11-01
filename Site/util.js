@@ -1,6 +1,7 @@
 /**
  * Created by andre on 30/10/2017.
  */
+/*
 function renderBoard(mx)
 {
     document.getElementById(htmlIdList.game).innerHTML = gameBoardHtml(mx);

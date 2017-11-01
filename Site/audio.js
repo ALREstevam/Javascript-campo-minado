@@ -1,7 +1,7 @@
 /**
  * Created by andre on 30/10/2017.
  */
-
+/*
 var files =
 {
     loose: 'bomb-contdown.mp3',
@@ -17,3 +17,4 @@ function playSound(filename)
     var audio = new Audio(filename);
     audio.play();
 }
+    */
