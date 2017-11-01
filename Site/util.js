@@ -1,92 +1,124 @@
 /**
  * Created by andre on 30/10/2017.
  */
-function renderBoard(mx) {
+function renderBoard(mx)
+{
     document.getElementById(htmlIdList.game).innerHTML = gameBoardHtml(mx);
 }
 
-function classNameFormat(before, appendTo) {
+function classNameFormat(before, appendTo)
+{
     return before += (" " + appendTo);
 }
 
 /*Recupera uma posição com base em um ID*/
-function recoveryPostion(id) {
+function recoveryPostion(id)
+{
     return JSON.parse(document.getElementById(id).getAttribute("value"));
 }
 
-function updateBigNameTitle(playename, opened, from) {
+function updateBigNameTitle(playename, opened, from)
+{
     document.getElementById(htmlIdList.title).innerHTML = "Campo Minado | Partida de: " + playename + " | " + opened + '/' + from;
 }
 
 //Consulta uma posição na matriz e retorna se ela está marcada como aberta
-function isOpened(x, y){//[][]
+function isOpened(x, y)
+{
     return matrix.mx[x][y].isExplored;
 }
 
 //Consulta uma posição na matriz e retorna se ela está marcada como aberta pelo cheat
-function isOpenedByCheat(x, y){//[][]
+function isOpenedByCheat(x, y)
+{
     return matrix.mx[x][y].isOpenByCheat;
 }
 
 //Consulta um valor numa posição da matriz (valor é o número entre -1 e 8)
-function getValueAt(x, y){//[][]
+function getValueAt(x, y)
+{
     return matrix.mx[x][y].value;
 }
 
 //Seta um valor numa posição
-function setValueAt(x, y, val) {
+function setValueAt(x, y, val)
+{
     matrix.mx[x][y].value = val;
 }
 
 //Seta uma célula como aberta
-function openCell(x, y) {
+function openCell(x, y)
+{
     matrix.mx[x][y].isExplored = true;
 }
 
 //Seta uma célula como aberta por cheat
-function openCellByCheat(x, y) {
+function openCellByCheat(x, y)
+{
     matrix.mx[x][y].isOpenByCheat = true;
 }
 
 //Retorna true se existir uma boma na posição
-function isBomb(x, y) {
+function isBomb(x, y)
+{
     return matrix.mx[x][y].value == -1;
 }
 
 //Seta uma posição como sendo bomba
-function setAsBomb(x, y) {
+function setAsBomb(x, y)
+{
     matrix.mx[x][y].value = -1
 }
 
-function closeCellCheat(x, y) {
+function closeCellCheat(x, y)
+{
     matrix.mx[x][y].isOpenByCheat = false;
 }
 
-function positionIsValid(posx, posy) {
-    var valid = posx >= 0 && posy >= 0 && posx < matrix.maxx && posy < matrix.maxy;
+function positionIsValid(posx, posy)
+{
+    return posx >= 0 && posy >= 0 && posx < matrix.maxx && posy < matrix.maxy;
     //console.log('pos ' + posx + ' ' + posy + ' valid :' + valid.toString());
-    return valid;
+    //return valid;
 }
 
-function openAllCells() {
+function openAllCells()
+{
     var row, column;
-    for(row = 0; row < matrix.maxx; row++){
-        for(column = 0; column < matrix.maxy; column++){
+    for(row = 0; row < matrix.maxx; row++)
+    {
+        for(column = 0; column < matrix.maxy; column++)
+        {
             openCell(row, column);
         }
     }
 }
 
 //Gera um número aleatório entre min e max
-function generateRandomBetween(min, max){
+function generateRandomBetween(min, max)
+{
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getActualTime() {
+function getActualTimeStamp()
+{
     return new Date().valueOf();
 }
 
-function simplePadding(num) {
+//retorna a data atual para computar o tempo gasto na partida
+function getActualDateStr()
+{
+    var dateString = "";
+    var newDate = new Date();
+    dateString += newDate.getDate() + "/";
+    dateString += (newDate.getMonth() + 1) + "/";
+    dateString += newDate.getFullYear();
+    return dateString;
+    //Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
+}
+
+function simplePadding(num)
+{
     //return (num < 10 && num > 0) ? '0' + num.toString() : num.toString();
     if(num < 10 && num >= 0){
         return '0' + num;

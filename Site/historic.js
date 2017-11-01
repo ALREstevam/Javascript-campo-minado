@@ -4,9 +4,11 @@
 
 
 /*Adicionar um elemento*/
-function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult) {
-
-    var histElem = {
+function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult, date)
+{
+    var histElem =
+    {
+        date: date,
         player: player,
         fieldDimensions: fieldx * fieldy,
         fieldx: fieldx,
@@ -16,11 +18,12 @@ function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, match
         matchResult: matchResult
     };
     var histsArray = new Array();
-
-    if(!localStorage.getItem('hist')){
+    if(!localStorage.getItem('hist'))
+    {
         localStorage.setItem('hist', JSON.stringify(histElem));
     }
-    else{
+    else
+    {
         histsArray = JSON.parse(localStorage.getItem('hist'));
     }
     histsArray.push(histElem);
@@ -29,7 +32,8 @@ function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, match
 
 /*Limpar o histórico
  * */
-function clearHistoric(id){
+function clearHistoric(id)
+{
     localStorage.removeItem('hist');
     renderHistoric(id);
     //configHeight();
@@ -37,34 +41,46 @@ function clearHistoric(id){
 
 /*Ler histórico como um array de objetos
  * */
-function readHistoric(){
-    if(!localStorage.getItem('hist')){
+function readHistoric()
+{
+    if(!localStorage.getItem('hist'))
+    {
         return null;
-    }else{
+    }
+    else
+    {
         return JSON.parse(localStorage.getItem('hist'));
     }
 }
 
+
 /*Converter histórico para HTML
  * */
-function historicToHtml(){
-    if(!localStorage.getItem('hist')){
+function historicToHtml()
+{
+    if(!localStorage.getItem('hist'))
+    {
         return "<p>Histórico vazio</p>";
-    }else{
+    }
+    else
+    {
         var hist = JSON.parse(localStorage.getItem('hist'));
-
         var rsp = "";
-        for(var i = 0; i < hist.length; i++){
+        for(var i = hist.length -1; i >= 0 ; i--){
             var elem = hist[i];
-            //console.log(elem);
-            rsp += "<div class='histElement'>\n";
-            rsp += "<p><strong>Jogador: </strong>"+ elem.player +"</p>\n";
-            rsp += "<p><strong>Campo: </strong>"+ elem.fieldx +" x "+ elem.fieldy +"</p>\n";
-            rsp += "<p><strong>Tempo: </strong>"+ elem.timeTaken +"</p>\n";
-            rsp += "<p><strong>Células abertas: </strong>"+ elem.openedCells +"</p>\n";
-            rsp += "<p><strong>Resultado: </strong>"+ elem.matchResult +"</p>\n";
+            var compl = (elem.matchResult)?'histGreen':'histRed';
+            console.log(elem);
+            rsp += "<div class='histElement "+compl+"'>\n";
+            rsp += "<p>\n";
+            rsp += "<strong>"+ elem.date +"</strong><br>\n";
+            rsp += "<strong>Jogador: </strong>"+ elem.player +"<br>\n";
+            rsp += "<strong>Campo: </strong>"+ elem.fieldx +" x "+ elem.fieldy +"<br>\n";
+            rsp += "<strong>Tempo: </strong>"+ elem.timeTaken +"<br>\n";
+            rsp += "<strong>Células abertas: </strong>"+ elem.openedCells +"<br>\n";
+            rsp += "<strong>Resultado: </strong>"+ matchResultStr(elem.matchResult) +"<br>\n";
+            rsp += "</p>\n";
             rsp += "</div>\n";
-            rsp += "<hr>\n";
+            //rsp += "<hr>\n";
         }
         return rsp;
     }
@@ -72,7 +88,11 @@ function historicToHtml(){
 
 /*Colocar o histórico em HTML dentro de algum elemento
  * */
-function renderHistoric(id){
+function renderHistoric(id)
+{
     document.getElementById(id).innerHTML = historicToHtml();
 }
 
+function matchResultStr(res) {
+    return (res)?'Venceu':'Perdeu';
+}

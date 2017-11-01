@@ -108,9 +108,9 @@ input:invalid {
 }
 
 #gameArea .game {
+    padding: 100px 10px 100px 10px;
     background-color: rgba(23, 159, 241, 0.41);
     border: solid rgba(22, 103, 161, 1) 3px;
-    padding: 10px;
     overflow: auto;
 }
 
@@ -148,8 +148,25 @@ table.game tr td button:hover {
 
 .histElement {
     font-size: 10pt;
-    line-height: 15%;
+    padding: 5px;
+    margin-bottom: 5px;
 }
+
+.histGreen{
+    color: #2c8c44;
+    background-color: rgba(118, 255, 182, 0.66);
+}
+
+.histRed{
+    color: #b22a1c;
+    background-color: rgba(253, 174, 151, 0.79);
+}
+
+.histArea{
+    max-height: 500px;
+    overflow-y: auto;
+}
+
 
 #gameBigTitle {
     width: 96.9%;
@@ -229,6 +246,7 @@ table.game tr td button:hover {
 .bomb:after {
     content: "\01F4A3";
     font-size: 12pt;
+    background-color: #ff6e68;
 }
 
 .msg {
@@ -297,6 +315,4 @@ table.game tr td button:hover {
     float: right;
     margin-top: 7%;
 }
-
-
 
