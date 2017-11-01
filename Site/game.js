@@ -315,11 +315,6 @@ function getActualTime(){
     //Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
 }
 
-//Gera um número aleatório entre min e max
-function generateRandomBetween(min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function restartGame(){
     playSound(files.click2);
     console.log('RESTARTING GAME');
@@ -526,3 +521,259 @@ function setCheatButtonStyle(cheatValue){
 	document.getElementById('cheatOption').innerHTML=(cheatValue) ? "Sim" : "Não";
     document.getElementById('cheatOption').style.backgroundColor = (cheatValue) ? "#3ada76" : "#cb4b37";
 }
+
+/*=================================================== HISTORIC ================================================================*/
+
+/**
+ * Created by andre on 30/10/2017.
+ */
+
+
+/*Adicionar um elemento*/
+function  appendToHistoric(player, fieldx, fieldy, timeTaken, openedCells, matchResult, date)
+{
+    var histElem =
+    {
+        date: date,
+        player: player,
+        fieldDimensions: fieldx * fieldy,
+        fieldx: fieldx,
+        fieldy: fieldy,
+        timeTaken: timeTaken,
+        openedCells: openedCells,
+        matchResult: matchResult
+    };
+    var histsArray = new Array();
+    if(!localStorage.getItem('hist'))
+    {
+        localStorage.setItem('hist', JSON.stringify(histElem));
+    }
+    else
+    {
+        histsArray = JSON.parse(localStorage.getItem('hist'));
+    }
+    histsArray.push(histElem);
+    localStorage.setItem('hist', JSON.stringify(histsArray));
+}
+
+/*Limpar o histórico
+ * */
+function clearHistoric(id)
+{
+    localStorage.removeItem('hist');
+    renderHistoric(id);
+    //configHeight();
+}
+
+/*Ler histórico como um array de objetos
+ * */
+function readHistoric()
+{
+    if(!localStorage.getItem('hist'))
+    {
+        return null;
+    }
+    else
+    {
+        return JSON.parse(localStorage.getItem('hist'));
+    }
+}
+
+
+/*Converter histórico para HTML
+ * */
+function historicToHtml()
+{
+    if(!localStorage.getItem('hist'))
+    {
+        return "<p>Histórico vazio</p>";
+    }
+    else
+    {
+        var hist = JSON.parse(localStorage.getItem('hist'));
+        var rsp = "";
+        for(var i = hist.length -1; i >= 0 ; i--){
+            var elem = hist[i];
+            var compl = (elem.matchResult)?'histGreen':'histRed';
+            console.log(elem);
+            rsp += "<div class='histElement "+compl+"'>\n";
+            rsp += "<p>\n";
+            rsp += "<strong>"+ elem.date +"</strong><br>\n";
+            rsp += "<strong>Jogador: </strong>"+ elem.player +"<br>\n";
+            rsp += "<strong>Campo: </strong>"+ elem.fieldx +" x "+ elem.fieldy +"<br>\n";
+            rsp += "<strong>Tempo: </strong>"+ elem.timeTaken +"<br>\n";
+            rsp += "<strong>Células abertas: </strong>"+ elem.openedCells +"<br>\n";
+            rsp += "<strong>Resultado: </strong>"+ matchResultStr(elem.matchResult) +"<br>\n";
+            rsp += "</p>\n";
+            rsp += "</div>\n";
+            //rsp += "<hr>\n";
+        }
+        return rsp;
+    }
+}
+
+/*Colocar o histórico em HTML dentro de algum elemento
+ * */
+function renderHistoric(id)
+{
+    document.getElementById(id).innerHTML = historicToHtml();
+}
+
+function matchResultStr(res) {
+    return (res)?'Venceu':'Perdeu';
+}
+
+/*=================================================== AUDIO ================================================================*/
+
+/**
+ * Created by andre on 30/10/2017.
+ */
+
+var files =
+{
+    loose: 'bomb-contdown.mp3',
+    win: 'win.mp3',
+    start: 'game_start.mp3',
+    click: 'click_0.mp3',
+    click2: 'click_1.mp3',
+    loose2: 'explosion_n_song.mp3'
+};
+
+function playSound(filename)
+{
+    var audio = new Audio(filename);
+    audio.play();
+}
+
+/*=================================================== UTILS ================================================================*/
+
+/**
+ * Created by andre on 30/10/2017.
+ */
+function renderBoard(mx)
+{
+    document.getElementById(htmlIdList.game).innerHTML = gameBoardHtml(mx);
+}
+
+function classNameFormat(before, appendTo)
+{
+    return before += (" " + appendTo);
+}
+
+/*Recupera uma posição com base em um ID*/
+function recoveryPostion(id)
+{
+    return JSON.parse(document.getElementById(id).getAttribute("value"));
+}
+
+function updateBigNameTitle(playename, opened, from)
+{
+    document.getElementById(htmlIdList.title).innerHTML = "Campo Minado | Partida de: " + playename + " | " + opened + '/' + from;
+}
+
+//Consulta uma posição na matriz e retorna se ela está marcada como aberta
+function isOpened(x, y)
+{
+    return matrix.mx[x][y].isExplored;
+}
+
+//Consulta uma posição na matriz e retorna se ela está marcada como aberta pelo cheat
+function isOpenedByCheat(x, y)
+{
+    return matrix.mx[x][y].isOpenByCheat;
+}
+
+//Consulta um valor numa posição da matriz (valor é o número entre -1 e 8)
+function getValueAt(x, y)
+{
+    return matrix.mx[x][y].value;
+}
+
+//Seta um valor numa posição
+function setValueAt(x, y, val)
+{
+    matrix.mx[x][y].value = val;
+}
+
+//Seta uma célula como aberta
+function openCell(x, y)
+{
+    matrix.mx[x][y].isExplored = true;
+}
+
+//Seta uma célula como aberta por cheat
+function openCellByCheat(x, y)
+{
+    matrix.mx[x][y].isOpenByCheat = true;
+}
+
+//Retorna true se existir uma boma na posição
+function isBomb(x, y)
+{
+    return matrix.mx[x][y].value == -1;
+}
+
+//Seta uma posição como sendo bomba
+function setAsBomb(x, y)
+{
+    matrix.mx[x][y].value = -1
+}
+
+function closeCellCheat(x, y)
+{
+    matrix.mx[x][y].isOpenByCheat = false;
+}
+
+function positionIsValid(posx, posy)
+{
+    return posx >= 0 && posy >= 0 && posx < matrix.maxx && posy < matrix.maxy;
+    //console.log('pos ' + posx + ' ' + posy + ' valid :' + valid.toString());
+    //return valid;
+}
+
+function openAllCells()
+{
+    var row, column;
+    for(row = 0; row < matrix.maxx; row++)
+    {
+        for(column = 0; column < matrix.maxy; column++)
+        {
+            openCell(row, column);
+        }
+    }
+}
+
+//Gera um número aleatório entre min e max
+function generateRandomBetween(min, max)
+{
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getActualTimeStamp()
+{
+    return new Date().valueOf();
+}
+
+//retorna a data atual para computar o tempo gasto na partida
+function getActualDateStr()
+{
+    var dateString = "";
+    var newDate = new Date();
+    dateString += newDate.getDate() + "/";
+    dateString += (newDate.getMonth() + 1) + "/";
+    dateString += newDate.getFullYear();
+    return dateString;
+    //Retorna a data atual do sistema para comparar quanto tempo passou entre quando o relógio iniciou e parou
+}
+
+function simplePadding(num)
+{
+    //return (num < 10 && num > 0) ? '0' + num.toString() : num.toString();
+    if(num < 10 && num >= 0){
+        return '0' + num;
+    }
+    else{
+        return num.toString();
+    }
+}
+
