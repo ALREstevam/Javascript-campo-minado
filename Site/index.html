@@ -41,7 +41,7 @@
             <button name="cheatOption" id="cheatOption" class="button" onclick="cheat();">Não</button>
 
             <label for="resetGame">Reiniciar jogo</label>
-            <button name="restartGame" id="resetGame" class="button blueButton" onclick="restartGameFull();">Reiniciar</button>
+            <button name="restartGame" id="resetGame" class="button blueButton" onclick="restartGame();resetStyle();">Reiniciar</button>
     </div>
 
     <div id="histArea" class="configsInside">
@@ -65,7 +65,7 @@
 <div id="vitoria" class="msg vitoria">
     <p>VOCÊ VENCEU!!!</p>
     <div class="buttons">
-        <button id="reiniciarvit" class="button" onclick="closepicture('vitoria');restartGameFull()">Novo Jogo</button>
+        <button id="reiniciarvit" class="button" onclick="closepicture('vitoria');restartGame();resetStyle();">Novo Jogo</button>
         <button id=vertabvit" class="button" onclick="closepicture('vitoria');">Ver tabuleiro</button>
     </div>
 </div>
@@ -73,15 +73,10 @@
 <div id="derrota" class="msg derrota">
     <p>VOCÊ PERDEU</p>
     <div class="buttons">
-        <button id="reiniciarped" class="button" onclick="closepicture('derrota');restartGameFull();">Novo Jogo</button>
+        <button id="reiniciarped" class="button" onclick="closepicture('derrota');restartGame();resetStyle();">Novo Jogo</button>
         <button id="vertabperd" class="button" onclick="closepicture('derrota');">Ver tabuleiro</button>
     </div>
 </div>
-
-
-		 
-
-
 
 </body>
 </html>
